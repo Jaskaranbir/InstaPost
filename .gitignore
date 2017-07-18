@@ -259,3 +259,22 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+# -------------Web----------------
+**/.DS_Store
+**/node_modules/
+**/.history
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+Web/dist
+Web/test/unit/coverage
+Web/test/e2e/reports
+Web/selenium-debug.log
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

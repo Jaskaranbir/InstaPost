@@ -1,0 +1,29 @@
+{
+  "presets": [
+    ["env", {
+      "es2015": { "modules": false }
+    }],
+    "stage-2",
+    "react"
+  ],
+  "plugins": [
+    "transform-runtime",
+    [
+      "transform-object-rest-spread",
+      { "useBuiltIns": true }
+    ]
+  ],
+  "comments": false,
+  "env": {
+    "test": {
+      "presets": ["env", "stage-2"],
+      "plugins": [
+        "istanbul",
+        [
+          "transform-object-rest-spread",
+          { "useBuiltIns": true }
+        ]
+      ]
+    }
+  }
+}

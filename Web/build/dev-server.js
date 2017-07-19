@@ -86,7 +86,5 @@ var server = app.listen(port)
 
 module.exports = {
   ready: readyPromise,
-  close: () => {
-    server.close()
-  }
+  close: server.close
 }

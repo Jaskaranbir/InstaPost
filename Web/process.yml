@@ -3,3 +3,5 @@ apps:
     script: 'build/prod-server.js'
     instances: 1
     watch: true
+    max_restarts: 10
+    min_uptime: 5000

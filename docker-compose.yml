@@ -1,8 +1,46 @@
-version: '2.1'
+version: '3'
 
 services:
   api:
-    image: api
-    build:
-      context: .\Api
-      dockerfile: Dockerfile
+    build: ./Api
+    links:
+      - sqlserver
+      - mongodb
+    ports:
+      - "81:5000"
+    volumes:
+      - /vagrant/Api:/usr/src/app
+
+  sqlserver:
+    build: ./SQLServer
+    cap_add:
+      - SYS_PTRACE
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - SA_PASSWORD=Testtest/123
+    hostname: sqlhost
+    ports:
+      - "82:1433"
+
+  mongodb:
+    build: ./MongoDB
+    environment:
+      - MONGODB_USER="ipUser"
+      - MONGODB_PASS="Testtest/123"
+      - MONGODB_DATABASE="InstaPost"
+    ports:
+      - "27017:27017"
+    restart: on-failure:5
+    # volumes:
+    #   - MongoDBVol:/data/db
+
+  node:
+    build: ./Web
+    ports:
+      - "80:8080"
+    restart: on-failure:5
+    volumes:
+      - /vagrant/Web:/usr/src/app
+
+# volumes:
+#   MongoDBVol:

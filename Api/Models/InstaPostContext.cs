@@ -19,28 +19,28 @@ namespace Api.Models
         {
             modelBuilder.Entity<Comments>(entity =>
             {
-                entity.HasKey(e => e.Commentid)
-                    .HasName("PK__Comments__CDA84BC5DDA91D39");
+                entity.HasKey(e => e.CommentId)
+                    .HasName("PK__Comments__CDDE919D4FF52FF3");
 
-                entity.Property(e => e.Commentid)
-                    .HasColumnName("commentid")
+                entity.Property(e => e.CommentId)
+                    .HasColumnName("commentId")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Date)
-                    .HasColumnName("date")
+                entity.Property(e => e.CommentDate)
+                    .HasColumnName("commentDate")
                     .HasColumnType("date");
 
-                entity.Property(e => e.Likeid).HasColumnName("likeid");
-
-                entity.Property(e => e.Postid).HasColumnName("postid");
-
-                entity.Property(e => e.Text)
-                    .HasColumnName("text")
+                entity.Property(e => e.CommentText)
+                    .HasColumnName("commentText")
                     .HasColumnType("varchar(50)");
+
+                entity.Property(e => e.PostId).HasColumnName("postId");
+
+                entity.Property(e => e.UserId).HasColumnName("userId");
 
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.Comments)
-                    .HasForeignKey(d => d.Postid)
+                    .HasForeignKey(d => d.PostId)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_PostComment");
 
@@ -53,24 +53,32 @@ namespace Api.Models
 
             modelBuilder.Entity<Locations>(entity =>
             {
-                entity.HasKey(e => e.Locationid)
-                    .HasName("PK__Location__306F78A672D744BA");
+                entity.HasKey(e => e.LocationId)
+                    .HasName("PK__Location__30646B6E8887D181");
 
-                entity.Property(e => e.Locationid)
-                    .HasColumnName("locationid")
+                entity.Property(e => e.LocationId)
+                    .HasColumnName("locationId")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Address).HasColumnType("varchar(50)");
+                entity.Property(e => e.Address)
+                    .HasColumnName("address")
+                    .HasColumnType("varchar(50)");
 
-                entity.Property(e => e.City).HasColumnType("varchar(50)");
+                entity.Property(e => e.City)
+                    .HasColumnName("city")
+                    .HasColumnType("varchar(50)");
 
-                entity.Property(e => e.Country).HasColumnType("varchar(50)");
+                entity.Property(e => e.Country)
+                    .HasColumnName("country")
+                    .HasColumnType("varchar(50)");
 
-                entity.Property(e => e.Postid).HasColumnName("postid");
+                entity.Property(e => e.PostId).HasColumnName("postId");
+
+                entity.Property(e => e.UserId).HasColumnName("userId");
 
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.Locations)
-                    .HasForeignKey(d => d.Postid)
+                    .HasForeignKey(d => d.PostId)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_PostLocation");
 
@@ -83,30 +91,30 @@ namespace Api.Models
 
             modelBuilder.Entity<Posts>(entity =>
             {
-                entity.HasKey(e => e.Postid)
-                    .HasName("PK__Posts__DD017FD239BBFC94");
+                entity.HasKey(e => e.PostId)
+                    .HasName("PK__Posts__DD0C739AB70D7A96");
 
-                entity.Property(e => e.Postid)
-                    .HasColumnName("postid")
+                entity.Property(e => e.PostId)
+                    .HasColumnName("postId")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Date)
-                    .HasColumnName("date")
+                entity.Property(e => e.PostDate)
+                    .HasColumnName("postDate")
                     .HasColumnType("date");
 
-                entity.Property(e => e.Image)
-                    .HasColumnName("image")
+                entity.Property(e => e.PostImage)
+                    .HasColumnName("postImage")
+                    .HasColumnType("varchar(50)");
+
+                entity.Property(e => e.PostText)
+                    .HasColumnName("postText")
                     .HasColumnType("varchar(50)");
 
                 entity.Property(e => e.Tags)
                     .HasColumnName("tags")
-                    .HasColumnType("text");
+                    .HasColumnType("varchar(max)");
 
-                entity.Property(e => e.Text)
-                    .HasColumnName("text")
-                    .HasColumnType("varchar(50)");
-
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.UserId).HasColumnName("userId");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Posts)
@@ -118,29 +126,33 @@ namespace Api.Models
             modelBuilder.Entity<Users>(entity =>
             {
                 entity.HasKey(e => e.UserId)
-                    .HasName("PK__Users__1788CCACED8C3C12");
+                    .HasName("PK__Users__CB9A1CFFCD2A278B");
 
                 entity.Property(e => e.UserId)
-                    .HasColumnName("UserID")
+                    .HasColumnName("userId")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Emails)
-                    .HasColumnName("emails")
+                entity.Property(e => e.Email)
+                    .HasColumnName("email")
                     .HasColumnType("varchar(50)");
 
-                entity.Property(e => e.FirstName).HasColumnType("varchar(50)");
-
-                entity.Property(e => e.LastName).HasColumnType("varchar(50)");
-
-                entity.Property(e => e.Passwords)
-                    .HasColumnName("passwords")
+                entity.Property(e => e.FirstName)
+                    .HasColumnName("firstName")
                     .HasColumnType("varchar(50)");
 
-                entity.Property(e => e.ProfilePicture).HasColumnType("varchar(100)");
+                entity.Property(e => e.IsSuspended).HasColumnName("isSuspended");
 
-                entity.Property(e => e.Suspended)
-                    .HasColumnName("suspended")
+                entity.Property(e => e.LastName)
+                    .HasColumnName("lastName")
                     .HasColumnType("varchar(50)");
+
+                entity.Property(e => e.Password)
+                    .HasColumnName("password")
+                    .HasColumnType("varchar(50)");
+
+                entity.Property(e => e.ProfilePicture)
+                    .HasColumnName("profilePicture")
+                    .HasColumnType("varchar(100)");
             });
         }
     }

@@ -15,9 +15,9 @@ namespace Api.Models
         public int UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Emails { get; set; }
-        public string Passwords { get; set; }
-        public string Suspended { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public bool? IsSuspended { get; set; }
         public string ProfilePicture { get; set; }
 
         public virtual ICollection<Comments> Comments { get; set; }

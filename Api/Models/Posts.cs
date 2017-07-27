@@ -11,11 +11,11 @@ namespace Api.Models
             Locations = new HashSet<Locations>();
         }
 
-        public int Postid { get; set; }
-        public string Image { get; set; }
-        public string Text { get; set; }
+        public int PostId { get; set; }
+        public string PostImage { get; set; }
+        public string PostText { get; set; }
         public string Tags { get; set; }
-        public DateTime? Date { get; set; }
+        public DateTime? PostDate { get; set; }
         public int UserId { get; set; }
 
         public virtual ICollection<Comments> Comments { get; set; }

@@ -21,6 +21,8 @@ services:
     hostname: sqlhost
     ports:
       - "82:1433"
+    # volumes:
+    #   - /vagrant/SQLServer/data:/var/opt/mssql/data
 
   mongodb:
     build: ./MongoDB

@@ -29,8 +29,9 @@ namespace Api.Controllers
     [HttpGet]
     public IEnumerable<string> Get()
     {
-      var table = db.Users;
-      var user = table.Where(e => true).FirstOrDefault();
+      var usersTable = db.Users;
+      // Just select any user (basically selects all users), and display whatever is the first result.
+      var user = usersTable.Where(e => true).FirstOrDefault();
 
         // Ignore below stuff for now.....
 
@@ -46,7 +47,7 @@ namespace Api.Controllers
       // var cursor = collection;
       // x += "            " + mongoc.Find(m => true).First().firstName;
 
-      return new string[] { user.Emails };
+      return new string[] { user.Email };
     }
 
     // GET api/values/5

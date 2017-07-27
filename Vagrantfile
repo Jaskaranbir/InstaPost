@@ -48,6 +48,6 @@ Vagrant.configure(2) do |config|
     instapostvm.vm.provision "shell", inline: "apt-get update"
     instapostvm.vm.provision "docker"
     instapostvm.vm.provision :docker
-    instapostvm.vm.provision :docker_compose, yml: ["/vagrant/docker-compose.yml"]
+    instapostvm.vm.provision :docker_compose, yml: ["/vagrant/docker-compose.yml"], rebuild: true, run: "always"
   end
 end

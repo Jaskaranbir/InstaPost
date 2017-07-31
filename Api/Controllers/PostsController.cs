@@ -1,4 +1,5 @@
-﻿using Api.Models;
+using Api.Models;
+using Api.ComponentModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,10 @@ using Newtonsoft.Json;
 namespace Api.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class PostsController : Controller
     {
         InstaPostContext db;
-        public ValuesController(InstaPostContext context) {
+        public PostsController(InstaPostContext context) {
             db = context;
         }
         // IConfiguration _iconfiguration;
@@ -30,25 +31,25 @@ namespace Api.Controllers
         [HttpGet]
         public string Get()
         {
-            var usersTable = db.Users;
-            // Just select any user (basically selects all users), and display whatever is the first result.
-            var user = usersTable.Where(e => true).ToList();
+            // Get the post. This time we are just selecting whatever
+            // first post we can get. But it will be based on some parameters
+            // or filters in real application.
+            var post = db.Posts.Where(e => true).FirstOrDefault();
 
-            // Ignore below stuff for now.....
+            // Get user and location associated with post
+            var user = db.Users.Where(e => e.UserId == post.UserId).FirstOrDefault();
+            var location = db.Locations.Where(e => e.PostId == post.PostId).FirstOrDefault();
 
-            // string constr2 = _iconfiguration.GetValue<string>("ConnectionStrings:InstaPostDB_Mongo");
+            // This is our ComponentModel (contains all the necessary data to tarnsfer over network)
+            var PostObj = new Post(post, user, location);
 
-            // var mongoc = new MongoClient(constr2).GetDatabase("test").GetCollection<Customer>("customers");
+            // Convert class obj to JSON
+            return JsonConvert.SerializeObject(PostObj);
 
-            // var collection = mongoc.GetCollection<BsonDocument>("instapost");
-            // var filter = new BsonDocument();
-
-
-            // var query = Query.EQ("Title","First post!");
-            // var cursor = collection;
-            // x += "            " + mongoc.Find(m => true).First().firstName;
-
-            return JsonConvert.SerializeObject(user);
+            /*
+                Base Idea is to form the object ith all required data
+                and serialize it using JsonConvert.
+             */
         }
 
         // GET api/values/5

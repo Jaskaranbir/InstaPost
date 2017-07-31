@@ -59,7 +59,7 @@ CREATE TABLE Posts (
 );
 
 CREATE NONCLUSTERED INDEX IX_Posts_postDate_postTime
-  ON Posts (postDate, postTime);
+  ON Posts (postDate DESC, postTime DESC);
 
 INSERT INTO Posts (postid, postImage, postText, postDate, postTime, commentsCount, likesCount, userId) VALUES (1, 'http://dummyimage.com/136x174.jpg/ff4444/ffffff', 'Networked bifurcated structure', '6/13/2014', '23:32:34', 5, 2, 1);
 INSERT INTO Posts (postid, postImage, postText, postDate, postTime, commentsCount, likesCount, userId) VALUES (2, 'http://dummyimage.com/164x243.jpg/dddddd/000000', 'Intuitive intangible ability', '5/4/2016', '13:32:34', 5, 2, 1);

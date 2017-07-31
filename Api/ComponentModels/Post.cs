@@ -34,7 +34,7 @@ namespace Api.ComponentModels
                             ? $" {UserObj.LastName}"
                             : "");
 
-            this.Usertag = UserObj.Username;
+            this.Usertag = UserObj.Usertag;
 
             this.Date = PostObj.PostDate;
             this.Time = PostObj.PostTime;

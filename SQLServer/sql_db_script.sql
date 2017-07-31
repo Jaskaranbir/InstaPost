@@ -7,7 +7,7 @@ CREATE TABLE Users (
   userId INT,
   firstName VARCHAR(50) NOT NULL,
   lastName VARCHAR(50),
-  username VARCHAR(20) NOT NULL UNIQUE,
+  usertag VARCHAR(20) NOT NULL UNIQUE,
   email VARCHAR(50) NOT NULL UNIQUE,
   password VARCHAR(50) NOT NULL,
   isSuspended BIT NOT NULL DEFAULT 0,
@@ -15,19 +15,19 @@ CREATE TABLE Users (
   CONSTRAINT PK_User_userId PRIMARY KEY (userId)
 );
 
-CREATE NONCLUSTERED INDEX IX_Users_username
-  ON Users (username);
+CREATE NONCLUSTERED INDEX IX_Users_usertag
+  ON Users (usertag);
 
-INSERT INTO Users (userId, firstName, lastName, username, email, password, isSuspended, profilePicture) VALUES (1, 'Cathryn', 'Murdy', 'cathMur', 'cmurdy0@huffingtonpost.com', 'UTvxYiY', 0, 'https://robohash.org/doloresdictaomnis.bmp?size=50x50&set=set1');
-INSERT INTO Users (userId, firstName, lastName, username, email, password, isSuspended, profilePicture) VALUES (2, 'Alyssa', 'Odney', 'odAlyssa', 'aodney1@umich.edu', 'OpnOGGqk3oH', 0, 'https://robohash.org/etoditnon.png?size=50x50&set=set1');
-INSERT INTO Users (userId, firstName, lastName, username, email, password, isSuspended, profilePicture) VALUES (3, 'Mandie', 'Nutbeam', 'MandieNut', 'mnutbeam2@howstuffworks.com', 'hcl0pI', 1, 'https://robohash.org/praesentiumquaeratquod.bmp?size=50x50&set=set1');
-INSERT INTO Users (userId, firstName, lastName, username, email, password, isSuspended, profilePicture) VALUES (4, 'Waldon', 'Astupenas', 'Ast_don', 'wastupenas3@shutterfly.com', '2X6Y5Whawma', 1, 'https://robohash.org/oditquaeaccusamus.png?size=50x50&set=set1');
-INSERT INTO Users (userId, firstName, lastName, username, email, password, isSuspended, profilePicture) VALUES (5, 'Tucker', 'Radolf', 'Radolffy', 'tradolf4@lulu.com', 'z9OOnqh', 1, 'https://robohash.org/etnonut.jpg?size=50x50&set=set1');
-INSERT INTO Users (userId, firstName, lastName, username, email, password, isSuspended, profilePicture) VALUES (6, 'Issi', 'McReynolds', 'McIssi', 'imcreynolds5@pen.io', 'MZaRRxYQ', 0, 'https://robohash.org/nonveritatismodi.jpg?size=50x50&set=set1');
-INSERT INTO Users (userId, firstName, lastName, username, email, password, isSuspended, profilePicture) VALUES (7, 'Ricca', 'Denys', 'Ricca408', 'rdenys6@newyorker.com', 'wUYtYFzd', 0, 'https://robohash.org/modiplaceatrecusandae.png?size=50x50&set=set1');
-INSERT INTO Users (userId, firstName, lastName, username, email, password, isSuspended, profilePicture) VALUES (8, 'Barnard', 'Cryer', 'BarnardCry', 'bcryer7@eepurl.com', 'x65dqhFeE77', 0, 'https://robohash.org/porroliberoanimi.bmp?size=50x50&set=set1');
-INSERT INTO Users (userId, firstName, lastName, username, email, password, isSuspended, profilePicture) VALUES (9, 'Linea', 'Aronin', 'someGuy', 'laronin8@studiopress.com', '4SFjA8lM', 0, 'https://robohash.org/ipsamnatustemporibus.png?size=50x50&set=set1');
-INSERT INTO Users (userId, firstName, lastName, username, email, password, isSuspended, profilePicture) VALUES (10, 'Edita', 'Youle', 'EditaYo!', 'eyoule9@ameblo.jp', 'w1wUXPLW', 1, 'https://robohash.org/blanditiisodioipsum.jpg?size=50x50&set=set1');
+INSERT INTO Users (userId, firstName, lastName, usertag, email, password, isSuspended, profilePicture) VALUES (1, 'Cathryn', 'Murdy', 'cathMur', 'cmurdy0@huffingtonpost.com', 'UTvxYiY', 0, 'https://robohash.org/doloresdictaomnis.bmp?size=50x50&set=set1');
+INSERT INTO Users (userId, firstName, lastName, usertag, email, password, isSuspended, profilePicture) VALUES (2, 'Alyssa', 'Odney', 'odAlyssa', 'aodney1@umich.edu', 'OpnOGGqk3oH', 0, 'https://robohash.org/etoditnon.png?size=50x50&set=set1');
+INSERT INTO Users (userId, firstName, lastName, usertag, email, password, isSuspended, profilePicture) VALUES (3, 'Mandie', 'Nutbeam', 'MandieNut', 'mnutbeam2@howstuffworks.com', 'hcl0pI', 1, 'https://robohash.org/praesentiumquaeratquod.bmp?size=50x50&set=set1');
+INSERT INTO Users (userId, firstName, lastName, usertag, email, password, isSuspended, profilePicture) VALUES (4, 'Waldon', 'Astupenas', 'Ast_don', 'wastupenas3@shutterfly.com', '2X6Y5Whawma', 1, 'https://robohash.org/oditquaeaccusamus.png?size=50x50&set=set1');
+INSERT INTO Users (userId, firstName, lastName, usertag, email, password, isSuspended, profilePicture) VALUES (5, 'Tucker', 'Radolf', 'Radolffy', 'tradolf4@lulu.com', 'z9OOnqh', 1, 'https://robohash.org/etnonut.jpg?size=50x50&set=set1');
+INSERT INTO Users (userId, firstName, lastName, usertag, email, password, isSuspended, profilePicture) VALUES (6, 'Issi', 'McReynolds', 'McIssi', 'imcreynolds5@pen.io', 'MZaRRxYQ', 0, 'https://robohash.org/nonveritatismodi.jpg?size=50x50&set=set1');
+INSERT INTO Users (userId, firstName, lastName, usertag, email, password, isSuspended, profilePicture) VALUES (7, 'Ricca', 'Denys', 'Ricca408', 'rdenys6@newyorker.com', 'wUYtYFzd', 0, 'https://robohash.org/modiplaceatrecusandae.png?size=50x50&set=set1');
+INSERT INTO Users (userId, firstName, lastName, usertag, email, password, isSuspended, profilePicture) VALUES (8, 'Barnard', 'Cryer', 'BarnardCry', 'bcryer7@eepurl.com', 'x65dqhFeE77', 0, 'https://robohash.org/porroliberoanimi.bmp?size=50x50&set=set1');
+INSERT INTO Users (userId, firstName, lastName, usertag, email, password, isSuspended, profilePicture) VALUES (9, 'Linea', 'Aronin', 'someGuy', 'laronin8@studiopress.com', '4SFjA8lM', 0, 'https://robohash.org/ipsamnatustemporibus.png?size=50x50&set=set1');
+INSERT INTO Users (userId, firstName, lastName, usertag, email, password, isSuspended, profilePicture) VALUES (10, 'Edita', 'Youle', 'EditaYo!', 'eyoule9@ameblo.jp', 'w1wUXPLW', 1, 'https://robohash.org/blanditiisodioipsum.jpg?size=50x50&set=set1');
 
 CREATE TABLE Administrators (
   administratorId INT,

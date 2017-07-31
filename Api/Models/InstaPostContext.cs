@@ -93,7 +93,7 @@ namespace Api.Models
                     .HasName("PK_Locations_locationId");
 
                 entity.HasIndex(e => e.PostId)
-                    .HasName("UQ__Location__DD0C739B21AE5DFA")
+                    .HasName("UQ__Location__DD0C739BE2078527")
                     .IsUnique();
 
                 entity.Property(e => e.LocationId)
@@ -178,11 +178,11 @@ namespace Api.Models
                     .HasName("PK_User_userId");
 
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__Users__AB6E6164A0FD7B0B")
+                    .HasName("UQ__Users__AB6E61649A1FC5CE")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Username)
-                    .HasName("UQ__Users__F3DBC572A4C6F964")
+                entity.HasIndex(e => e.Usertag)
+                    .HasName("UQ__Users__79DFBA16B56A9F80")
                     .IsUnique();
 
                 entity.Property(e => e.UserId)
@@ -216,9 +216,9 @@ namespace Api.Models
                     .HasColumnName("profilePicture")
                     .HasColumnType("varchar(100)");
 
-                entity.Property(e => e.Username)
+                entity.Property(e => e.Usertag)
                     .IsRequired()
-                    .HasColumnName("username")
+                    .HasColumnName("usertag")
                     .HasColumnType("varchar(20)");
             });
         }

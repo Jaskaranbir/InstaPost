@@ -48,7 +48,7 @@ namespace Api.Controllers
       // var cursor = collection;
       // x += "            " + mongoc.Find(m => true).First().firstName;
 
-      return JsonConvert.SerializeObject(new string[] { user.Email });
+      return JsonConvert.SerializeObject(user);
     }
 
     // GET api/values/5

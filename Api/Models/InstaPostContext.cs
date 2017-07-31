@@ -6,6 +6,7 @@ namespace Api.Models
 {
     public partial class InstaPostContext : DbContext
     {
+        public virtual DbSet<Administrators> Administrators { get; set; }
         public virtual DbSet<Comments> Comments { get; set; }
         public virtual DbSet<Locations> Locations { get; set; }
         public virtual DbSet<Posts> Posts { get; set; }
@@ -17,10 +18,36 @@ namespace Api.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Administrators>(entity =>
+            {
+                entity.HasKey(e => e.AdministratorId)
+                    .HasName("PK_Administrators_administratorId");
+
+                entity.HasIndex(e => e.UserId)
+                    .HasName("IX_Administrators_userId");
+
+                entity.Property(e => e.AdministratorId)
+                    .HasColumnName("administratorId")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.UserId).HasColumnName("userId");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Administrators)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Administrators_userId");
+            });
+
             modelBuilder.Entity<Comments>(entity =>
             {
                 entity.HasKey(e => e.CommentId)
-                    .HasName("PK__Comments__CDDE919D4FF52FF3");
+                    .HasName("PK_Comments_commentId");
+
+                entity.HasIndex(e => new { e.CommentDate, e.CommentTime })
+                    .HasName("IX_Comments_commentDate_commentTime");
+
+                entity.HasIndex(e => new { e.PostId, e.CommentDate, e.CommentTime })
+                    .HasName("IX_Comments_postId_commentDate_commentTime");
 
                 entity.Property(e => e.CommentId)
                     .HasColumnName("commentId")
@@ -31,8 +58,17 @@ namespace Api.Models
                     .HasColumnType("date");
 
                 entity.Property(e => e.CommentText)
+                    .IsRequired()
                     .HasColumnName("commentText")
-                    .HasColumnType("varchar(50)");
+                    .HasColumnType("varchar(300)");
+
+                entity.Property(e => e.CommentTime).HasColumnName("commentTime");
+
+                entity.Property(e => e.HasChildComments)
+                    .HasColumnName("hasChildComments")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.ParentCommentId).HasColumnName("parentCommentId");
 
                 entity.Property(e => e.PostId).HasColumnName("postId");
 
@@ -42,19 +78,23 @@ namespace Api.Models
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.PostId)
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK_PostComment");
+                    .HasConstraintName("FK_Comments_postId");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK_UserComment");
+                    .HasConstraintName("FK_Comments_userId");
             });
 
             modelBuilder.Entity<Locations>(entity =>
             {
                 entity.HasKey(e => e.LocationId)
-                    .HasName("PK__Location__30646B6E8887D181");
+                    .HasName("PK_Locations_locationId");
+
+                entity.HasIndex(e => e.PostId)
+                    .HasName("UQ__Location__DD0C739B21AE5DFA")
+                    .IsUnique();
 
                 entity.Property(e => e.LocationId)
                     .HasColumnName("locationId")
@@ -62,7 +102,7 @@ namespace Api.Models
 
                 entity.Property(e => e.Address)
                     .HasColumnName("address")
-                    .HasColumnType("varchar(50)");
+                    .HasColumnType("varchar(100)");
 
                 entity.Property(e => e.City)
                     .HasColumnName("city")
@@ -77,26 +117,37 @@ namespace Api.Models
                 entity.Property(e => e.UserId).HasColumnName("userId");
 
                 entity.HasOne(d => d.Post)
-                    .WithMany(p => p.Locations)
-                    .HasForeignKey(d => d.PostId)
+                    .WithOne(p => p.Locations)
+                    .HasForeignKey<Locations>(d => d.PostId)
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK_PostLocation");
+                    .HasConstraintName("FK_Locations_postId");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Locations)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK_UserLocation");
+                    .HasConstraintName("FK_Locations_userId");
             });
 
             modelBuilder.Entity<Posts>(entity =>
             {
                 entity.HasKey(e => e.PostId)
-                    .HasName("PK__Posts__DD0C739AB70D7A96");
+                    .HasName("PK_Post_postId");
+
+                entity.HasIndex(e => new { e.PostDate, e.PostTime })
+                    .HasName("IX_Posts_postDate_postTime");
 
                 entity.Property(e => e.PostId)
                     .HasColumnName("postId")
                     .ValueGeneratedNever();
+
+                entity.Property(e => e.CommentsCount)
+                    .HasColumnName("commentsCount")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.LikesCount)
+                    .HasColumnName("likesCount")
+                    .HasDefaultValueSql("0");
 
                 entity.Property(e => e.PostDate)
                     .HasColumnName("postDate")
@@ -104,15 +155,13 @@ namespace Api.Models
 
                 entity.Property(e => e.PostImage)
                     .HasColumnName("postImage")
-                    .HasColumnType("varchar(50)");
+                    .HasColumnType("varchar(200)");
 
                 entity.Property(e => e.PostText)
                     .HasColumnName("postText")
-                    .HasColumnType("varchar(50)");
+                    .HasColumnType("varchar(1000)");
 
-                entity.Property(e => e.Tags)
-                    .HasColumnName("tags")
-                    .HasColumnType("varchar(max)");
+                entity.Property(e => e.PostTime).HasColumnName("postTime");
 
                 entity.Property(e => e.UserId).HasColumnName("userId");
 
@@ -120,39 +169,57 @@ namespace Api.Models
                     .WithMany(p => p.Posts)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK_UserPost");
+                    .HasConstraintName("FK_Post_userId");
             });
 
             modelBuilder.Entity<Users>(entity =>
             {
                 entity.HasKey(e => e.UserId)
-                    .HasName("PK__Users__CB9A1CFFCD2A278B");
+                    .HasName("PK_User_userId");
+
+                entity.HasIndex(e => e.Email)
+                    .HasName("UQ__Users__AB6E6164A0FD7B0B")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.Username)
+                    .HasName("UQ__Users__F3DBC572A4C6F964")
+                    .IsUnique();
 
                 entity.Property(e => e.UserId)
                     .HasColumnName("userId")
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.Email)
+                    .IsRequired()
                     .HasColumnName("email")
                     .HasColumnType("varchar(50)");
 
                 entity.Property(e => e.FirstName)
+                    .IsRequired()
                     .HasColumnName("firstName")
                     .HasColumnType("varchar(50)");
 
-                entity.Property(e => e.IsSuspended).HasColumnName("isSuspended");
+                entity.Property(e => e.IsSuspended)
+                    .HasColumnName("isSuspended")
+                    .HasDefaultValueSql("0");
 
                 entity.Property(e => e.LastName)
                     .HasColumnName("lastName")
                     .HasColumnType("varchar(50)");
 
                 entity.Property(e => e.Password)
+                    .IsRequired()
                     .HasColumnName("password")
                     .HasColumnType("varchar(50)");
 
                 entity.Property(e => e.ProfilePicture)
                     .HasColumnName("profilePicture")
                     .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .HasColumnName("username")
+                    .HasColumnType("varchar(20)");
             });
         }
     }

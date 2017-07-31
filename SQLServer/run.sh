@@ -16,4 +16,5 @@ if [ ! -f db_imported ]; then
 fi
 
 echo "Database setup script complete."
+echo
 echo "This server is now ready to connect."

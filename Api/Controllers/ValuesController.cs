@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using Newtonsoft.Json;
 
 namespace Api.Controllers
 {
@@ -27,7 +28,7 @@ namespace Api.Controllers
 
     // GET api/values
     [HttpGet]
-    public IEnumerable<string> Get()
+    public string Get()
     {
       var usersTable = db.Users;
       // Just select any user (basically selects all users), and display whatever is the first result.
@@ -47,7 +48,7 @@ namespace Api.Controllers
       // var cursor = collection;
       // x += "            " + mongoc.Find(m => true).First().firstName;
 
-      return new string[] { user.Email };
+      return JsonConvert.SerializeObject(new string[] { user.Email });
     }
 
     // GET api/values/5

@@ -4,362 +4,285 @@ mongo -u ipUser -p Testtest/123 InstaPost << EOF
   use InstaPost
 
   db.bookmarks.insert(
-	[
-		{
-		  bookmarkId : 11,
-		  b_postId : 11,
-		  b_userId : 1
-		},
-		{
-		  bookmarkId : 21,
-		  b_postId : 21,
-		  b_userId : 2
-		},
-		{
-		  bookmarkId : 31,
-		  b_postId : 31,
-		  b_userId : 3
-		},
-		{
-		  bookmarkId : 32,
-		  b_postId : 32,
-		  b_userId : 3
-		},
-		{
-		  bookmarkId : 41,
-		  b_postId : 41,
-		  b_userId : 4
-		},
-		{
-		  bookmarkId : 42,
-		  b_postId : 42,
-		  b_userId : 4
-		},
-		{
-		  bookmarkId : 51,
-		  b_postId : 51,
-		  b_userId : 5
-		},
-		{
-		  bookmarkId : 61,
-		  b_postId : 61,
-		  b_userId : 6
-		},
-		{
-		  bookmarkId : 62,
-		  b_postId : 62,
-		  b_userId : 6
-		},
-		{
-		  bookmarkId : 71,
-		  b_postId : 71,
-		  b_userId : 7
-		},
-		{
-		  bookmarkId : 72,
-		  b_postId : 72,
-		  b_userId : 7
-		},
-		{
-		  bookmarkId : 73,
-		  b_postId : 73,
-		  b_userId : 7
-		},
-		{
-		  bookmarkId : 81,
-		  b_postId : 81,
-		  b_userId : 8
-		},
-		{
-		  bookmarkId : 91,
-		  b_postId : 91,
-		  b_userId : 9
-		},
-		{
-		  bookmarkId : 92,
-		  b_postId : 92,
-		  b_userId : 9
-		},
-		{
-		  bookmarkId : 101,
-		  b_postId : 101,
-		  b_userId : 10
-		},
-		{
-		  bookmarkId : 102,
-		  b_postId : 102,
-		  b_userId : 10
-		}
-	]
-);
+		[
+			{
+		  	b_userId : 1,
+				b_postId: [1, 2, 3, 4, 5],
+				b_count: 5
+			},
+			{
+			  b_userId : 2,
+				b_postId: [1, 2, 3, 5],
+				b_count: 4
+			},
+			{
+			  b_userId : 3,
+		  	b_postId: [1, 2, 5],
+				b_count: 3
+			},
+			{
+		  	b_userId : 4,
+		  	b_postId: [1, 2],
+				b_count: 2
+			},
+			{
+			  b_userId : 5,
+			  b_postId: [],
+				b_count: 0
+			},
+			{
+		  	b_userId : 6,
+		  	b_postId: [1],
+				b_count: 1
+			},
+			{
+		  	b_userId : 7,
+				b_postId: [1, 2, 3],
+				b_count: 3
+			},
+			{
+		  	b_userId : 10,
+				b_postId: [1, 2, 3, 4, 5],
+				b_count: 5
+			},
+			{
+		  	b_userId : 6,
+				b_postId: [1, 2, 7],
+				b_count: 3
+			},
+			{
+			  b_userId : 7,
+				b_postId: [1, 2, 3, 4, 5, 8, 10],
+				b_count: 7
+			},
+			{
+			  b_userId : 17,
+				b_postId: [1],
+				b_count: 1
+			},
+			{
+		  	b_userId : 7,
+				b_postId: [3, 4, 5]
+				b_count: 3
+			},
+			{
+			  b_userId : 20,
+				b_postId: [1, 2, 3, 4, 5],
+				b_count: 5
+			},
+			{
+		  	b_userId : 9,
+				b_postId: [1, 2, 3, 4, 5],
+				b_count: 5
+			}
+		]
+	);
 
-db.followers.insert(
-	[
-		{
-		  followId : 1,
-		  follower_userId : 1,
-		  follows_userId : 2
-		},
-		{
-		  followId : 2,
-		  follower_userId : 1,
-		  follows_userId : 3
-		},
-		{
-		  followId : 3,
-		  follower_userId : 2,
-		  follows_userId : 4
-		},
-		{
-		  followId : 4,
-		  follower_userId : 2,
-		  follows_userId : 5
-		},
-		{
-		  followId : 5,
-		  follower_userId : 3,
-		  follows_userId : 8
-		},
-		{
-		  followId : 6,
-		  follower_userId : 3,
-		  follows_userId : 9
-		},
-		{
-		  followId : 7,
-		  follower_userId : 4,
-		  follows_userId : 3
-		},
-		{
-		  followId : 8,
-		  follower_userId : 5,
-		  follows_userId : 2
-		},
-		{
-		  followId : 9,
-		  follower_userId : 4,
-		  follows_userId : 5
-		},
-		{
-		  followId : 10,
-		  follower_userId : 6,
-		  follows_userId : 8
-		},
-		{
-		  followId : 1,
-		  follower_userId : 7,
-		  follows_userId : 2
-		},
-		{
-		  followId : 2,
-		  follower_userId : 7,
-		  follows_userId : 1
-		},
-		{
-		  followId : 3,
-		  follower_userId : 7,
-		  follows_userId : 5
-		},
-		{
-		  followId : 1,
-		  follower_userId : 8,
-		  follows_userId : 2
-		},
-		{
-		  followId : 1,
-		  follower_userId : 9,
-		  follows_userId : 2
-		},
-		{
-		  followId : 2,
-		  follower_userId : 9,
-		  follows_userId : 1
-		},
-		{
-		  followId : 1,
-		  follower_userId : 10,
-		  follows_userId : 2
-		},
-		{
-		  followId : 2,
-		  follower_userId : 10,
-		  follows_userId : 1
-		}
-	]
-);
+	db.bookmarks.createIndex( { "b_userId": 1, "b_postId": -1 } )
 
-db.likes.insert(
-	[
-		{
-		  likeId : 1,
-		  l_postId : 11,
-		  l_userId : 1
-		},
-		{
-		  likeId : 2,
-		  l_postId : 21,
-		  l_userId : 2
-		},
-		{
-		  likeId : 3,
-		  l_postId : 31,
-		  l_userId : 3
-		},
-		{
-		  likeId : 4,
-		  l_postId : 32,
-		  l_userId : 3
-		},
-		{
-		  likeId : 5,
-		  l_postId : 51,
-		  l_userId : 5
-		},
-		{
-		  likeId : 6,
-		  l_postId : 52,
-		  l_userId : 5
-		},
-		{
-		  likeId : 7,
-		  l_postId : 61,
-		  l_userId : 6
-		},
-		{
-		  likeId : 8,
-		  l_postId : 62,
-		  l_userId : 6
-		},
-		{
-		  likeId : 9,
-		  l_postId : 63,
-		  l_userId : 6
-		},
-		{
-		  likeId : 10,
-		  l_postId : 71,
-		  l_userId : 7
-		},
-		{
-		  likeId : 11,
-		  l_postId : 72,
-		  l_userId : 7
-		},
-		{
-		  likeId : 12,
-		  l_postId : 81,
-		  l_userId : 8
-		},
-		{
-		  likeId : 13,
-		  l_postId : 82,
-		  l_userId : 8
-		},
-		{
-		  likeId : 14,
-		  l_postId : 91,
-		  l_userId : 9
-		},
-		{
-		  likeId : 15,
-		  l_postId : 92,
-		  l_userId : 9
-		},
-		{
-		  likeId : 16,
-		  l_postId : 93,
-		  l_userId : 9
-		},
-		{
-		  likeId : 17,
-		  l_postId : 101,
-		  l_userId : 10
-		}
-	]
-);
+	db.followers.insert(
+		[
+			{
+		  	followId : 1,
+		  	follower_userId : 1,
+		  	followed_userId : 2
+			},
+			{
+			  followId : 2,
+		  	follower_userId : 1,
+			  followed_userId : 3
+			},
+			{
+		  	followId : 3,
+			  follower_userId : 2,
+		  	followed_userId : 4
+			},
+			{
+			  followId : 4,
+		  	follower_userId : 2,
+		  	followed_userId : 5
+			},
+			{
+			  followId : 5,
+		  	follower_userId : 3,
+		  	followed_userId : 8
+			},
+			{
+			  followId : 6,
+		  	follower_userId : 3,
+		  	followed_userId : 9
+			},
+			{
+			  followId : 7,
+		  	follower_userId : 4,
+		  	followed_userId : 3
+			},
+			{
+		  	followId : 8,
+		  	follower_userId : 5,
+		  	followed_userId : 2
+			},
+			{
+			  followId : 9,
+		  	follower_userId : 4,
+		  	followed_userId : 5
+			},
+			{
+			  followId : 10,
+		  	follower_userId : 6,
+		  	followed_userId : 8
+			},
+			{
+			  followId : 1,
+		  	follower_userId : 7,
+		  	followed_userId : 2
+			},
+			{
+			  followId : 2,
+		  	follower_userId : 7,
+		  	followed_userId : 1
+			},
+			{
+			  followId : 3,
+		  	follower_userId : 7,
+		  	followed_userId : 5
+			},
+			{
+			  followId : 1,
+		  	follower_userId : 8,
+		  	followed_userId : 2
+			},
+			{
+			  followId : 1,
+		  	follower_userId : 9,
+		  	followed_userId : 2
+			},
+			{
+			  followId : 2,
+		  	follower_userId : 9,
+		  	followed_userId : 1
+			},
+			{
+			  followId : 1,
+		  	follower_userId : 10,
+		  	followed_userId : 2
+			},
+			{
+			  followId : 2,
+		  	follower_userId : 10,
+		  	followed_userId : 1
+			}
+		]
+	)
 
-db.reports.insert(
-	[
-		{
-		  reportId : 11,
-		  r_postId : 11,
-		  r_userId : 1,
-		  r_commentText : "comment1"
-		},
-		{
-		  reportId : 21,
-		  r_postId : 21,
-		  r_userId : 2,
-		  r_commentText : "comment1"
-		},
-		{
-		  reportId : 41,
-		  r_postId : 41,
-		  r_userId : 4,
-		  r_commentText : "comment1"
-		},
-		{
-		  reportId : 61,
-		  r_postId : 61,
-		  r_userId : 6,
-		  r_commentText : "comment1"
-		},
-		{
-		  reportId : 62,
-		  r_postId : 62,
-		  r_userId : 6,
-		  r_commentText : "comment1"
-		},
-		{
-		  reportId : 71,
-		  r_postId : 71,
-		  r_userId : 7,
-		  r_commentText : "comment1"
-		},
-		{
-		  reportId : 72,
-		  r_postId : 72,
-		  r_userId : 7,
-		  r_commentText : "comment1"
-		},
-		{
-		  reportId : 81,
-		  r_postId : 81,
-		  r_userId : 8,
-		  r_commentText : "comment1"
-		},
-		{
-		  reportId : 82,
-		  r_postId : 82,
-		  r_userId : 8,
-		  r_commentText : "comment1"
-		},
-		{
-		  reportId : 91,
-		  r_postId : 91,
-		  r_userId : 9,
-		  r_commentText : "comment1"
-		},
-		{
-		  reportId : 92,
-		  r_postId : 92,
-		  r_userId : 9,
-		  r_commentText : "comment1"
-		},
-		{
-		  reportId : 93,
-		  r_postId : 93,
-		  r_userId : 9,
-		  r_commentText : "comment1"
-		},
-		{
-		  reportId : 101,
-		  r_postId : 101,
-		  r_userId : 10,
-		  r_commentText : "comment1"
-		}
-	]
-);
+	db.followers.createIndex( { "followed_userId": 1 } )
+	db.followers.createIndex( { "follower_userId": 1 } )
+
+	db.likes.insert(
+		[
+			{
+				like_id: 1,
+		  	l_postId : 11,
+		  	l_userIds : [1, 2, 3, 4]
+			},
+			{
+				like_id: 2,
+			  l_postId : 21,
+		  	l_userIds : [2]
+			},
+			{
+				like_id: 3,
+		  	l_postId : 30,
+		  	l_userIds : []
+			},
+			{
+				like_id: 4,
+			  l_postId : 18,
+		  	l_userIds : [3]
+			},
+			{
+				like_id: 5,
+		  	l_postId : 11,
+		  	l_userIds : [2, 4]
+			},
+			{
+				like_id: 6,
+		  	l_postId : 2,
+		  	l_userIds : [5]
+			},
+			{
+				like_id: 7,
+		  	l_postId : 13,
+		  	l_userIds : [6]
+			},
+			{
+				like_id: 8,
+		  	l_postId : 28,
+		  	l_userIds : [6]
+			},
+			{
+				like_id: 9,
+		  	l_postId : 1,
+		  	l_userIds : [8]
+			},
+			{
+				like_id: 10,
+		  	l_postId : 10,
+		  	l_userIds : [7, 2, 5, 6]
+			}
+		]
+	);
+
+	db.likes.createIndex( { "l_postId": 1 } )
+
+	db.reports.insert(
+		[
+			{
+		  	r_postId : 11,
+				reports: [
+					{
+						r_userId: 2,
+						r_comment: "cmt1"
+					},
+					{
+						r_userId: 3,
+						r_comment: "cmt4"
+					}
+				],
+				isResolved: false
+			},
+			{
+		  	r_postId : 11,
+				reports: [
+					{
+						r_userId: 5,
+						r_comment: "cmttestestestestest13"
+					},
+					{
+						r_userId: 9,
+						r_comment: "cmtisoahgsiadoija"
+					}
+				],
+				isResolved: true
+			},
+			{
+		  	r_postId : 11,
+				reports: [
+					{
+						r_userId: 2,
+						r_comment: "cmt3223"
+					},
+					{
+						r_userId: 5,
+						r_comment: "cmtdsafsafd"
+					}
+				],
+				isResolved: false
+			}
+		]
+	);
+
+	db.likes.createIndex( { "r_postId": -1 } )
 
 exit
 EOF

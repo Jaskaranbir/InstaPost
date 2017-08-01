@@ -118,10 +118,10 @@ CREATE TABLE Comments (
 );
 
 CREATE NONCLUSTERED INDEX IX_Comments_postId_commentDate_commentTime
-  ON Comments (postId, commentDate, commentTime);
+  ON Comments (postId DESC, commentDate DESC, commentTime DESC);
 
 CREATE NONCLUSTERED INDEX IX_Comments_commentDate_commentTime
-  ON Comments (commentDate, commentTime);
+  ON Comments (commentDate DESC, commentTime DESC);
 
 INSERT INTO Comments (commentId, postId, userId, commentText, commentDate, commentTime, hasChildComments, parentCommentId) VALUES (1, 1, 1, 'Advanced bandwidth-monitored project', '4/8/2017', '12:34:54', 0, null);
 INSERT INTO Comments (commentId, postId, userId, commentText, commentDate, commentTime, hasChildComments, parentCommentId) VALUES (2, 2, 2, 'Public-key radical ability', '11/23/2016', '12:23:45', 0, null);
@@ -149,7 +149,7 @@ CREATE TABLE Locations (
 );
 
 CREATE CLUSTERED INDEX IX_Locations_postId
-  ON Locations (postId);
+  ON Locations (postId DESC);
 
 INSERT INTO Locations (locationId, address, city, country, userId, postId) VALUES (1, '937 Morrow Road', 'Casa Nova', 'Portugal', 1, 1);
 INSERT INTO Locations (locationId, address, city, country, userId, postId) VALUES (2, '5465 Gale Avenue', 'Krajan Joho', 'Indonesia', 2, 2);

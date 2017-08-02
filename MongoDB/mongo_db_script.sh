@@ -1,79 +1,21 @@
 #!/bin/bash
 
 mongo -u ipUser -p Testtest/123 InstaPost << EOF
-  use InstaPost
+  use InstaPost;
 
   db.bookmarks.insert(
     [
       {
+        bookmarkId: 1,
         b_userId : 1,
         b_postId: [1, 2, 3, 4, 5],
         b_count: 5
       },
       {
+        bookmarkId: 2,
         b_userId : 2,
         b_postId: [1, 2, 3, 5],
         b_count: 4
-      },
-      {
-        b_userId : 3,
-        b_postId: [1, 2, 5],
-        b_count: 3
-      },
-      {
-        b_userId : 4,
-        b_postId: [1, 2],
-        b_count: 2
-      },
-      {
-        b_userId : 5,
-        b_postId: [],
-        b_count: 0
-      },
-      {
-        b_userId : 6,
-        b_postId: [1],
-        b_count: 1
-      },
-      {
-        b_userId : 7,
-        b_postId: [1, 2, 3],
-        b_count: 3
-      },
-      {
-        b_userId : 10,
-        b_postId: [1, 2, 3, 4, 5],
-        b_count: 5
-      },
-      {
-        b_userId : 6,
-        b_postId: [1, 2, 7],
-        b_count: 3
-      },
-      {
-        b_userId : 7,
-        b_postId: [1, 2, 3, 4, 5, 8, 10],
-        b_count: 7
-      },
-      {
-        b_userId : 17,
-        b_postId: [1],
-        b_count: 1
-      },
-      {
-        b_userId : 7,
-        b_postId: [3, 4, 5]
-        b_count: 3
-      },
-      {
-        b_userId : 20,
-        b_postId: [1, 2, 3, 4, 5],
-        b_count: 5
-      },
-      {
-        b_userId : 9,
-        b_postId: [1, 2, 3, 4, 5],
-        b_count: 5
       }
     ]
   );
@@ -238,6 +180,7 @@ mongo -u ipUser -p Testtest/123 InstaPost << EOF
   db.reports.insert(
     [
       {
+        reportId: 1,
         r_postId : 11,
         reports: [
           {
@@ -252,6 +195,7 @@ mongo -u ipUser -p Testtest/123 InstaPost << EOF
         isResolved: false
       },
       {
+        reportId: 2,
         r_postId : 11,
         reports: [
           {
@@ -266,7 +210,8 @@ mongo -u ipUser -p Testtest/123 InstaPost << EOF
         isResolved: true
       },
       {
-        r_postId : 11,
+        reportId: 3,
+        r_postId : 14,
         reports: [
           {
             r_userId: 2,

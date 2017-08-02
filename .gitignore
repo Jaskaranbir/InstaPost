@@ -283,3 +283,5 @@ Web/selenium-debug.log
 *.ntvs*
 *.njsproj
 *.sln
+
+/Vagrantfile

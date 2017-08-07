@@ -1,0 +1,60 @@
+header
+{
+	border-radius: 1px;
+	height: 50px;
+}
+
+#logo
+{
+	height: 50px;
+	width: 50px;
+}
+
+#smallProfPic
+{
+	height: 50px;
+	width: 50px;
+	border-radius: 100%;
+	float: right;
+}
+
+#bigProfPic
+{
+	margin-top: 1%;
+	height: 200px;
+	width: 100%;
+	border-radius: 25px;
+	float: left;
+}
+
+nav
+{
+	background-color: #565a5c !important;
+}
+
+h3
+{
+	color: #ced1cc;
+}
+
+@media (max-width: 600px) {
+  #settingsNav {
+    display: none;
+  }
+}
+
+#bigProfPic:hover
+{
+    -webkit-filter: brightness(70%);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+
+
+
+
+

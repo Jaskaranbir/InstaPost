@@ -1,0 +1,38 @@
+header
+{
+	background-color: red;
+	border-radius: 1px;
+	height: 50px;
+}
+
+nav
+{
+	background-color: #565a5c !important;
+}
+
+#logo
+{
+	height: 50px;
+	width: 50px;
+	display: inline;
+}
+
+#smallProfPic
+{
+	height: 50px;
+	width: 50px;
+	border-radius: 100%;
+	float: right;
+	display: inline;
+}
+
+h1
+{
+	text-align: center;
+}
+
+p
+{
+	text-align: center;
+}
+

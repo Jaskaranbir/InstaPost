@@ -1,0 +1,91 @@
+<!--Design User Settings Page
+Keep settings page layout similar to github with our usual color scheme we discussed above.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Your User Settings</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="./settingStyles.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<nav class="navbar navbar-default">
+<div class="container-fluid">
+	<div class="navbar-header">
+	<img id="logo" alt="Logo" src="./templogo.jpeg">
+		<a href="#settingsNav"></a>
+	</div>
+</div>
+	<div>
+	<ul class="nav navbar-nav navbar-right">
+		<li><a href="#"><img id="smallProfPic" src="./test.png"></a></li>
+	</ul>
+	</div>
+</nav>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-lg-2">	
+    <img id="bigProfPic" src="./test.png" title="Change Profile Picture">
+    <br><br><br><br><br><br><br><br><br>
+      <nav id="settingsNav" class="navbar navbar-default navbar-fixed-side">	
+        	<h3 class="menu-heading" style="font-size: 20px; margin-left: 15px;">Personal Settings</h3>
+        	<a class="list-group-item" href="#">Test</a>
+        	<a class="list-group-item" href="#">Test</a>
+        	<a class="list-group-item" href="#">Test</a>
+        	<a class="list-group-item" href="#">Test</a>
+        	<a class="list-group-item" href="#">Test</a>
+      </nav>
+    </div>
+    <div class="container-fluid">
+	    <div class="col-sm-9 col-sm-7">
+	    <form>
+	      <h2>Your Profile Settings</h2>
+	      <hr>
+	      <dt>Name</dt>
+	      <dd>
+	      	<input type="text" name="name" class="form-control">
+	      </dd>
+	      <br>
+	      <dt>UserName</dt>
+	      <dd>
+	      	<input type="text" name="user" class="form-control">
+	      </dd>
+	      <br>
+	      <dt>Password</dt>
+	      <dd>
+	      	<input type="text" name="pass" class="form-control">
+	      </dd>
+	      <br>
+	      <dt>Email</dt>
+	      <dd>
+	      	<input type="email" name="email" class="form-control">
+	      </dd>
+	      <br>
+	      <dt>Bio</dt>
+	      <dd>
+	      	<input type="text" name="bio" class="form-control">
+	      </dd>
+	      <br>
+		  <dt>URL</dt>
+	      <dd>
+	      	<input type="url" name="url" class="form-control">
+	      </dd>
+	      <br>
+	      <dt>Company</dt>
+	      <dd>
+	      	<input type="text" name="company" class="form-control">
+	      </dd>
+	      <br>
+	      <dt>Location</dt>
+	      <dd>
+	      	<input type="text" name="location" class="form-control">
+	      </dd>
+	      <br>
+	      <input type="submit" name="submit" value="Update Profile" class="btn btn-primary">
+	     </form>
+	    </div>
+  </div>
+</div>
+</body>
+</html>

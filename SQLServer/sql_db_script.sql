@@ -31,7 +31,7 @@ INSERT INTO Users (firstName, lastName, usertag, email, password, isSuspended, p
 
 CREATE TABLE Administrators (
   administratorId INT IDENTITY,
-  userId INT,
+  userId INT NOT NULL,
   CONSTRAINT PK_Administrators_administratorId PRIMARY KEY NONCLUSTERED (administratorId),
   CONSTRAINT FK_Administrators_userId FOREIGN KEY (userId)
     REFERENCES Users(userId)
@@ -114,7 +114,9 @@ CREATE TABLE Comments (
   CONSTRAINT FK_Comments_postId FOREIGN KEY (postId)
     REFERENCES Posts(postId),
   CONSTRAINT FK_Comments_userId FOREIGN KEY (userId)
-    REFERENCES Users(userId)
+    REFERENCES Users(userId),
+  CONSTRAINT FK_Comments_parentCommentId FOREIGN KEY (parentCommentId)
+    REFERENCES Comments(commentId)
 );
 
 CREATE NONCLUSTERED INDEX IX_Comments_postId_commentDate_commentTime

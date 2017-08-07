@@ -6,111 +6,114 @@ mongo -u ipUser -p Testtest/123 InstaPost << EOF
   db.bookmarks.insert(
     [
       {
-        bookmarkId: 1,
         b_userId : 1,
-        b_postId: [1, 2, 3, 4, 5],
-        b_count: 5
+        b_postIds : [1, 2, 3, 4, 5],
+        b_count : 5
       },
       {
-        bookmarkId: 2,
         b_userId : 2,
-        b_postId: [1, 2, 3, 5],
-        b_count: 4
+        b_postIds : [1, 2, 3, 5],
+        b_count : 4
       }
     ]
   );
 
-  db.bookmarks.createIndex( { "b_userId": 1, "b_postId": -1 } )
+  db.bookmarks.createIndex( { "b_userId": 1 }, { unique: true } );
+  db.bookmarks.createIndex( { "b_postIds": -1 }, { unique: true } );
+
+  db.tags.insert(
+    [
+      {
+        tag : "stuff",
+        t_postIds : [2, 4, 6, 1],
+        t_count : 4
+      },
+      {
+        tag : "testTag2",
+        t_postIds : [4, 5, 7, 2],
+        t_count : 4
+      },
+      {
+        tag : "Tag5",
+        t_postIds : [8, 4, 5, 7, 2],
+        t_count : 5
+      }
+    ]
+  )
+
+  db.tags.createIndex( { "tag": 1 }, { unique: true } )
 
   db.followers.insert(
     [
       {
-        followId : 1,
         follower_userId : 1,
         followed_userId : 2
       },
       {
-        followId : 2,
         follower_userId : 1,
         followed_userId : 3
       },
       {
-        followId : 3,
         follower_userId : 2,
         followed_userId : 4
       },
       {
-        followId : 4,
         follower_userId : 2,
         followed_userId : 5
       },
       {
-        followId : 5,
         follower_userId : 3,
         followed_userId : 8
       },
       {
-        followId : 6,
         follower_userId : 3,
         followed_userId : 9
       },
       {
-        followId : 7,
         follower_userId : 4,
         followed_userId : 3
       },
       {
-        followId : 8,
         follower_userId : 5,
         followed_userId : 2
       },
       {
-        followId : 9,
         follower_userId : 4,
         followed_userId : 5
       },
       {
-        followId : 10,
         follower_userId : 6,
         followed_userId : 8
       },
       {
-        followId : 1,
         follower_userId : 7,
         followed_userId : 2
       },
       {
-        followId : 2,
         follower_userId : 7,
         followed_userId : 1
       },
       {
-        followId : 3,
         follower_userId : 7,
         followed_userId : 5
       },
       {
-        followId : 1,
         follower_userId : 8,
         followed_userId : 2
       },
       {
-        followId : 1,
         follower_userId : 9,
         followed_userId : 2
       },
       {
-        followId : 2,
         follower_userId : 9,
         followed_userId : 1
       },
       {
-        followId : 1,
         follower_userId : 10,
         followed_userId : 2
       },
       {
-        followId : 2,
         follower_userId : 10,
         followed_userId : 1
       }
@@ -119,68 +122,58 @@ mongo -u ipUser -p Testtest/123 InstaPost << EOF
 
   db.followers.createIndex( { "followed_userId": 1 } )
   db.followers.createIndex( { "follower_userId": 1 } )
+  db.followers.createIndex( { "followed_userId": 1, "follower_userId": 1 }, { unique: true } )
 
   db.likes.insert(
     [
       {
-        like_id: 1,
         l_postId : 11,
         l_userIds : [1, 2, 3, 4]
       },
       {
-        like_id: 2,
         l_postId : 21,
         l_userIds : [2]
       },
       {
-        like_id: 3,
         l_postId : 30,
         l_userIds : []
       },
       {
-        like_id: 4,
         l_postId : 18,
         l_userIds : [3]
       },
       {
-        like_id: 5,
-        l_postId : 11,
+        l_postId : 16,
         l_userIds : [2, 4]
       },
       {
-        like_id: 6,
         l_postId : 2,
         l_userIds : [5]
       },
       {
-        like_id: 7,
         l_postId : 13,
         l_userIds : [6]
       },
       {
-        like_id: 8,
         l_postId : 28,
         l_userIds : [6]
       },
       {
-        like_id: 9,
         l_postId : 1,
         l_userIds : [8]
       },
       {
-        like_id: 10,
         l_postId : 10,
         l_userIds : [7, 2, 5, 6]
       }
     ]
   );
 
-  db.likes.createIndex( { "l_postId": 1 } )
+  db.likes.createIndex( { "l_postId": 1 }, { unique: true } )
 
   db.reports.insert(
     [
       {
-        reportId: 1,
         r_postId : 11,
         reports: [
           {
@@ -192,11 +185,11 @@ mongo -u ipUser -p Testtest/123 InstaPost << EOF
             r_comment: "cmt4"
           }
         ],
+        r_count: 2,
         isResolved: false
       },
       {
-        reportId: 2,
-        r_postId : 11,
+        r_postId : 13,
         reports: [
           {
             r_userId: 5,
@@ -207,10 +200,10 @@ mongo -u ipUser -p Testtest/123 InstaPost << EOF
             r_comment: "cmtisoahgsiadoija"
           }
         ],
+        r_count: 2,
         isResolved: true
       },
       {
-        reportId: 3,
         r_postId : 14,
         reports: [
           {
@@ -222,12 +215,13 @@ mongo -u ipUser -p Testtest/123 InstaPost << EOF
             r_comment: "cmtdsafsafd"
           }
         ],
+        r_count: 2,
         isResolved: false
       }
     ]
   );
 
-  db.likes.createIndex( { "r_postId": -1 } )
+  db.reports.createIndex( { "r_postId": -1 }, { unique: true } )
 
 exit
 EOF

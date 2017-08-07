@@ -27,11 +27,13 @@ Vagrant.configure(2) do |config|
     instapostvm.vm.hostname = "instapost"
     instapostvm.vm.box = "bento/ubuntu-16.04"
     # Frontend
-    instapostvm.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+    instapostvm.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true
     # Backend
-    instapostvm.vm.network "forwarded_port", guest: 81, host: 8181, auto_correct: true
+    instapostvm.vm.network "forwarded_port", guest: 5000, host: 5000, auto_correct: true
     # MSSQLServer
-    instapostvm.vm.network "forwarded_port", guest: 82, host: 8282, auto_correct: true
+    instapostvm.vm.network "forwarded_port", guest: 1433, host: 1433
+    # MongoDB
+    instapostvm.vm.network "forwarded_port", guest: 27017, host: 27017
 
     instapostvm.vm.provider "virtualbox" do |vb|
       vb.name = "instapostvm"

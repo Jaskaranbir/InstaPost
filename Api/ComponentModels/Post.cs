@@ -14,6 +14,7 @@ namespace Api.ComponentModels
         public string Username { get; }
         public string Usertag { get; }
 
+        public int PostId { get; }
         public int UserId { get; }
         public int CommentsCount { get; }
         public int LikesCount { get; }
@@ -21,27 +22,32 @@ namespace Api.ComponentModels
         public DateTime Date { get; }
         public TimeSpan Time { get; }
 
-        public Post(Posts PostObj, Users UserObj, Locations LocationObj)
+        public Post(Posts post)
         {
-            this.Image = PostObj.PostImage;
+            this.Image = post.PostImage;
 
-            this.Location = $"{LocationObj.Address} {LocationObj.City}, {LocationObj.Country}";
+            Locations location = post.Locations;
+            this.Location = location == null
+                ? ""
+                : $"{location.Address} {location.City}, {location.Country}";
 
-            this.Text = PostObj.PostText;
+            this.Text = post.PostText;
 
-            this.Username = UserObj.FirstName +
-                            (UserObj.LastName != ""
-                            ? $" {UserObj.LastName}"
+            Users user = post.User;
+            this.Username = user.FirstName +
+                            (user.LastName != ""
+                            ? $" {user.LastName}"
                             : "");
 
-            this.Usertag = UserObj.Usertag;
+            this.Usertag = user.Usertag;
 
-            this.Date = PostObj.PostDate;
-            this.Time = PostObj.PostTime;
+            this.Date = post.PostDate;
+            this.Time = post.PostTime;
 
-            this.UserId = UserObj.UserId;
-            this.CommentsCount = PostObj.CommentsCount;
-            this.LikesCount = PostObj.LikesCount;
+            this.PostId = post.PostId;
+            this.UserId = user.UserId;
+            this.CommentsCount = post.CommentsCount;
+            this.LikesCount = post.LikesCount;
         }
     }
 }

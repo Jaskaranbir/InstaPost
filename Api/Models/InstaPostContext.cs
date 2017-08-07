@@ -1,45 +1,60 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using MongoDB.Driver;
+using Api.MongoWrappers;
 
-namespace Api.Models
-{
-    public partial class InstaPostContext : DbContext
-    {
+namespace Api.Models {
+    public partial class InstaPostContext : DbContext {
+
         public virtual DbSet<Administrators> Administrators { get; set; }
         public virtual DbSet<Comments> Comments { get; set; }
         public virtual DbSet<Locations> Locations { get; set; }
         public virtual DbSet<Posts> Posts { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
-        public InstaPostContext(DbContextOptions<InstaPostContext> options)
-            : base(options)
-        { }
+        public IMongoDbSet<Bookmarks> Bookmarks { get; set; }
+        public IMongoDbSet<Followers> Followers { get; set; }
+        public IMongoDbSet<Likes> Likes { get; set; }
+        public IMongoDbSet<Reports> Reports { get; set; }
+        public IMongoDbSet<Tags> Tags { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Administrators>(entity =>
-            {
+
+        public InstaPostContext(
+            DbContextOptions<InstaPostContext> options,
+            IMongoDbSet<Bookmarks> Bookmarks,
+            IMongoDbSet<Followers> Followers,
+            IMongoDbSet<Likes> Likes,
+            IMongoDbSet<Reports> Reports,
+            IMongoDbSet<Tags> Tags
+        ) : base(options) {
+            this.Bookmarks = Bookmarks;
+            this.Followers = Followers;
+            this.Likes = Likes;
+            this.Reports = Reports;
+            this.Tags = Tags;
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            modelBuilder.Entity<Administrators>(entity => {
                 entity.HasKey(e => e.AdministratorId)
                     .HasName("PK_Administrators_administratorId");
 
                 entity.HasIndex(e => e.UserId)
                     .HasName("IX_Administrators_userId");
 
-                entity.Property(e => e.AdministratorId)
-                    .HasColumnName("administratorId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.AdministratorId).HasColumnName("administratorId");
 
                 entity.Property(e => e.UserId).HasColumnName("userId");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Administrators)
                     .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Administrators_userId");
             });
 
-            modelBuilder.Entity<Comments>(entity =>
-            {
+            modelBuilder.Entity<Comments>(entity => {
                 entity.HasKey(e => e.CommentId)
                     .HasName("PK_Comments_commentId");
 
@@ -49,9 +64,7 @@ namespace Api.Models
                 entity.HasIndex(e => new { e.PostId, e.CommentDate, e.CommentTime })
                     .HasName("IX_Comments_postId_commentDate_commentTime");
 
-                entity.Property(e => e.CommentId)
-                    .HasColumnName("commentId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.CommentId).HasColumnName("commentId");
 
                 entity.Property(e => e.CommentDate)
                     .HasColumnName("commentDate")
@@ -74,6 +87,11 @@ namespace Api.Models
 
                 entity.Property(e => e.UserId).HasColumnName("userId");
 
+                entity.HasOne(d => d.ParentComment)
+                    .WithMany(p => p.InverseParentComment)
+                    .HasForeignKey(d => d.ParentCommentId)
+                    .HasConstraintName("FK_Comments_parentCommentId");
+
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.PostId)
@@ -87,18 +105,15 @@ namespace Api.Models
                     .HasConstraintName("FK_Comments_userId");
             });
 
-            modelBuilder.Entity<Locations>(entity =>
-            {
+            modelBuilder.Entity<Locations>(entity => {
                 entity.HasKey(e => e.LocationId)
                     .HasName("PK_Locations_locationId");
 
                 entity.HasIndex(e => e.PostId)
-                    .HasName("UQ__Location__DD0C739BE2078527")
+                    .HasName("UQ__Location__DD0C739B5AE9AB44")
                     .IsUnique();
 
-                entity.Property(e => e.LocationId)
-                    .HasColumnName("locationId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.LocationId).HasColumnName("locationId");
 
                 entity.Property(e => e.Address)
                     .HasColumnName("address")
@@ -129,17 +144,14 @@ namespace Api.Models
                     .HasConstraintName("FK_Locations_userId");
             });
 
-            modelBuilder.Entity<Posts>(entity =>
-            {
+            modelBuilder.Entity<Posts>(entity => {
                 entity.HasKey(e => e.PostId)
                     .HasName("PK_Post_postId");
 
                 entity.HasIndex(e => new { e.PostDate, e.PostTime })
                     .HasName("IX_Posts_postDate_postTime");
 
-                entity.Property(e => e.PostId)
-                    .HasColumnName("postId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.PostId).HasColumnName("postId");
 
                 entity.Property(e => e.CommentsCount)
                     .HasColumnName("commentsCount")
@@ -172,22 +184,19 @@ namespace Api.Models
                     .HasConstraintName("FK_Post_userId");
             });
 
-            modelBuilder.Entity<Users>(entity =>
-            {
+            modelBuilder.Entity<Users>(entity => {
                 entity.HasKey(e => e.UserId)
                     .HasName("PK_User_userId");
 
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__Users__AB6E61649A1FC5CE")
+                    .HasName("UQ__Users__AB6E61643BFC7738")
                     .IsUnique();
 
                 entity.HasIndex(e => e.Usertag)
-                    .HasName("UQ__Users__79DFBA16B56A9F80")
+                    .HasName("UQ__Users__79DFBA16813EF0B4")
                     .IsUnique();
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("userId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.UserId).HasColumnName("userId");
 
                 entity.Property(e => e.Email)
                     .IsRequired()

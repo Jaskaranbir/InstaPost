@@ -7,7 +7,7 @@ services:
       - sqlserver
       - mongodb
     ports:
-      - "81:5000"
+      - "5000:5000"
     volumes:
       - /vagrant/Api:/usr/src/app
 
@@ -18,9 +18,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - SA_PASSWORD=Testtest/123
+
     hostname: sqlhost
     ports:
-      - "82:1433"
+      - "1433:1433"
     # volumes:
     #   - /vagrant/SQLServer/data:/var/opt/mssql/data
 
@@ -39,7 +40,7 @@ services:
   node:
     build: ./Web
     ports:
-      - "80:8080"
+      - "8080:8080"
     restart: on-failure:5
     volumes:
       - /vagrant/Web:/usr/src/app

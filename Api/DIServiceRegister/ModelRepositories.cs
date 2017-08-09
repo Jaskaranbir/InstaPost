@@ -2,20 +2,20 @@
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Api.DIServiceRegister {
-    public class Repositories
+    public class ModelRepositories
     {
 
         public static void Register(IServiceCollection services) {
-            services.AddSingleton<IAdministratorsRepository, AdministratorsRepository>();
-            services.AddSingleton<IBookmarksRepository, BookmarksRepository>();
-            services.AddSingleton<ICommentsRepository, CommentsRepository>();
-            services.AddSingleton<IFollowersRepository, FollowersRepository>();
-            services.AddSingleton<ILikesRepository, LikesRepository>();
-            services.AddSingleton<ILocationsRepository, LocationsRepository>();
-            services.AddSingleton<IPostsRepository, IPostsRepository>();
-            services.AddSingleton<IReportsRepository, ReportsRepository>();
-            services.AddSingleton<ITagsRepository, TagsRepository>();
+            services.AddScoped<IAdministratorsRepository, AdministratorsRepository>();
+            services.AddScoped<IBookmarksRepository, BookmarksRepository>();
+            services.AddScoped<ICommentsRepository, CommentsRepository>();
+            services.AddScoped<IFollowersRepository, FollowersRepository>();
+            services.AddScoped<ILikesRepository, LikesRepository>();
+            services.AddScoped<ILocationsRepository, LocationsRepository>();
+            services.AddScoped<IPostsRepository, PostsRepository>();
+            services.AddScoped<IReportsRepository, ReportsRepository>();
+            services.AddScoped<ITagsRepository, TagsRepository>();
         }
 
-    }
+    } 
 }

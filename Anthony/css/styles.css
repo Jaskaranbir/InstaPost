@@ -1,37 +1,36 @@
-.navbar-nav > li > a, .navbar-brand {
-    padding-top:5px !important; padding-bottom:0 !important;
+.navbar-nav>li>a,
+.navbar-brand {
+    padding-top: 5px !important;
+    padding-bottom: 0 !important;
     height: 40px;
 }
+
 .navbar {
-    min-height:40px !important;
+    min-height: 40px !important;
     background-color: #ced1cc;
-    color:  #565a5c;
-    
-  
+    color: #565a5c;
 }
 
-.profile-circle{
+.profile-circle {
     border-radius: 50%;
     margin-right: 50px;
     padding-bottom: 5px;
 }
 
 img {
-    max-width:100%;
-    max-height:100%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .logo {
     padding-bottom: 5px;
-    margin-left:50px;
-    
-    
+    margin-left: 50px;
 }
 
 body {
     padding-top: 70px;
     width: 80%;
-    margin:auto;
+    margin: auto;
 }
 
 .img-poster img {
@@ -41,56 +40,68 @@ body {
     margin-right: 15px;
 }
 
-
- .img-comment-list {
-    list-style: none;  
+.img-comment-list {
+    list-style: none;
     padding: 0;
 }
- .img-comment-list li {
-    margin:0;
-    margin-top:10px;
+
+.img-comment-list li {
+    margin: 0;
+    margin-top: 10px;
 }
 
-
-
- .img-comment-list p {
+.img-comment-list p {
     margin: 0;
 }
 
- .img-comment-list span {
-    font-size: .8em; 
+.img-comment-list span {
+    font-size: .8em;
     color: #aaa;
 }
 
-
-.sidenav{
+.sidenav {
     clear: right;
-         
-       
 }
 
-
-#replyComments{
-       padding-left:10px;
+#replyComments {
+    padding-left: 10px;
 }
 
-footer{
-    padding-top:20px;
+#replyCommentComments {
+      padding-left: 10px;
+}
+
+footer {
+    padding-top: 20px;
 }
 
 .clearfix {
-    padding-bottom:10px;
+    padding-bottom: 10px;
 }
 
-a{
-    text-decoration: none;
-}
-a:hover{
+a {
     text-decoration: none;
 }
 
-.post {
-            padding:5px;
-            height: 100%;
-           
-        }
+a:hover {
+    text-decoration: none;
+}
+
+.posts {
+    padding: 5px;
+    height: 100%;
+}
+
+.individualPost {
+     padding:5px; 
+     margin:10px;
+    box-shadow: 1px 1px 10px #888888;
+}
+
+#commentExpand {
+    padding-left: 10px;
+}
+
+.postedImage {
+    text-align: center;
+}

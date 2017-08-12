@@ -1,107 +1,180 @@
-.navbar-nav>li>a,
-.navbar-brand {
-    padding-top: 5px !important;
-    padding-bottom: 0 !important;
-    height: 40px;
-}
+  .navbar-nav>li>a,
+  .navbar-brand {
+      height: 50px;
+      margin: 5;
+      padding: 0;
+      margin-right: 30px;
+  }
 
-.navbar {
-    min-height: 40px !important;
-    background-color: #ced1cc;
-    color: #565a5c;
-}
+  .navbar {
+      min-height: 60px !important;
+      background-color: #565a5c;
+      color: #ced1cc;
+      border: none;
+      padding-top: 5px;
+  }
 
-.profile-circle {
-    border-radius: 50%;
-    margin-right: 50px;
-    padding-bottom: 5px;
-}
+  .navbar .navbar-collapse {
+      text-align: center;
+  }
 
-img {
-    max-width: 100%;
-    max-height: 100%;
-}
+  .navbar-form {
+      display: inline-block;
+  }
 
-.logo {
-    padding-bottom: 5px;
-    margin-left: 50px;
-}
+  body {
+      padding-top: 70px;
+     
+  }
 
-body {
-    padding-top: 70px;
-    width: 80%;
-    margin: auto;
-}
+  .profile-circle {
+      border-radius: 50%;
+      margin-right: 5px;
+  }
 
-.img-poster img {
-    height: 50px;
-    width: 50px;
-    float: left;
-    margin-right: 15px;
-}
+  img {
+      max-width: 100%;
+      max-height: 100%;
+  }
 
-.img-comment-list {
-    list-style: none;
-    padding: 0;
-}
+  .logo {
+      margin-left: 30px;
+      margin-top: 5px;
+      height: auto;
+      width: auto;
+      max-width: 80px;
+      max-height: 80px;
+  }
 
-.img-comment-list li {
-    margin: 0;
-    margin-top: 10px;
-}
+  .img-poster img {
+      height: 50px;
+      width: 50px;
+      float: left;
+      margin-right: 15px;
+  }
 
-.img-comment-list p {
-    margin: 0;
-}
+  .img-comment-list {
+      list-style: none;
+      padding: 0;
+  }
 
-.img-comment-list span {
-    font-size: .8em;
-    color: #aaa;
-}
+  .img-comment-list li {
+      margin: 0;
+      margin-top: 10px;
+  }
 
-.sidenav {
-    clear: right;
-}
+  .img-comment-list p {
+      margin: 0;
+  }
 
-#replyComments {
-    padding-left: 10px;
-}
+  .img-comment-list span {
+      font-size: .8em;
+      color: #aaa;
+  }
 
-#replyCommentComments {
+  .sidenav {
+      clear: right;
+  }
+
+  #replyComments {
       padding-left: 10px;
+  }
+
+  #replyCommentComments {
+      padding-left: 10px;
+  }
+
+  footer {
+      padding-top: 20px;
+  }
+
+  .clearfix {
+      padding-bottom: 10px;
+  }
+
+  a {
+      text-decoration: none;
+  }
+
+  a:hover {
+      text-decoration: none;
+  }
+
+  .posts {
+      padding: 5px;
+      height: 100%;
+      clear: right;
+  }
+
+  .individualPost {
+      padding: 10px;
+      margin: auto;
+      margin-bottom:20px;
+      
+      box-shadow: 1px 1px 10px #888888;
+      width:70%;
+  }
+
+  #commentExpand {
+      padding-left: 10px;
+  }
+
+  .postedImage {
+      text-align: center;
+  }
+
+  html,
+  body {
+      height: 100%;
+  }
+
+  .reactButton{
+        height: auto;
+      width: auto;
+      max-width: 20px;
+      max-height: 20px;
+  }
+
+  .createPost{
+       padding: 10px;
+      margin: auto;
+      margin-bottom:20px;
+      box-shadow: 1px 1px 10px #888888;
+      width:70%;
+  }
+
+  .btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }
 
-footer {
-    padding-top: 20px;
+#img-upload{
+    width: 100%;
+}
+.panel-title{
+    padding-top: 7.5px;
 }
 
-.clearfix {
-    padding-bottom: 10px;
+.photoButton {
+      box-shadow: 1px 1px 1px #888888;
+      font-size: 30px;
 }
-
-a {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: none;
-}
-
-.posts {
-    padding: 5px;
-    height: 100%;
-}
-
-.individualPost {
-     padding:5px; 
-     margin:10px;
-    box-shadow: 1px 1px 10px #888888;
-}
-
-#commentExpand {
-    padding-left: 10px;
-}
-
-.postedImage {
-    text-align: center;
+  
+.postList {
+    font-size:20px;
 }

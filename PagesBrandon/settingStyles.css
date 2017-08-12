@@ -1,3 +1,9 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+
 header
 {
 	border-radius: 1px;
@@ -37,11 +43,11 @@ h3
 	color: #ced1cc;
 }
 
-@media (max-width: 600px) {
+/*@media (max-width: 600px) {
   #settingsNav {
     display: none;
   }
-}
+}*/
 
 #bigProfPic:hover
 {

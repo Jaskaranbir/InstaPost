@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img class="logo" src="images/tempLogo.JPG"  alt="temp logo"></a>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><img class="profile-circle" src="images/goku.jpg" alt="profile pic"></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid text-center">
+    <div class="col-sm-2 sidenav">
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+    </div>
+
+    <div class="col-sm-8 text-left posts">
+
+
+      <div class="individualPost">
+
+        <div class="img-poster clearfix">
+          <a href=""><img class="img-circle" src="images/goku.jpg" alt="goku"></a>
+          <strong><a href="">John Doe</a></strong>
+        
+          <div class="dropdown" id="dropdown">
+            <div class="col-sm-8">
+              <a class="dropdown_button dropdown_close" href="#"><span class="arrow"></span></a>
+              <a class="dropdown_button dropdown_open" href="#dropdown"><span class="arrow"></span></a>
+              <ul class="dropdown_content">
+                  <li><a href="#">Edit Comment</a></li>
+                  <li><a href="#">Remove Comment</a></li>
+                  <li><a href="#">Mark-as-Solved</a></li>                                
+              </ul>
+            </div>
+          </div>
+
+          <p>12 minutes ago</p>
+        </div>
+
+        <div class="postedImage">
+          <img src="images/banana.jpg" alt="banana">
+        </div>
+
+        <br>
+
+        <a href="#" class="glyphicon glyphicon-heart"></a>
+        <a href="#" class="glyphicon glyphicon-comment"></a>
+        <a id="commentExpand" data-toggle="collapse" href="#comments" class="pull-right"> 95 comments</a>
+        <a id="commentExpand" data-toggle="collapse" href="#comments" class="pull-right">5 likes&nbsp;&nbsp;&nbsp;</a>
+
+        <div id="comments" class="collapse">
+          <ul class="img-comment-list">
+            <li>
+              <div class="comment-text">
+                <strong><a href="">Jane Doe</a></strong>
+
+                <div class="dropdown" id="dropdown">
+                  <div class="col-sm-8">
+                    <a class="dropdown_button dropdown_close" href="#"><span class="arrow"></span></a>
+                    <a class="dropdown_button dropdown_open" href="#dropdown"><span class="arrow"></span></a>
+                    <ul class="dropdown_content">
+                        <li><a href="#">Edit Comment</a></li>
+                        <li><a href="#">Remove Comment</a></li>
+                        <li><a href="#">Mark-as-Solved</a></li>                                
+                    </ul>
+                  </div>
+                </div>
+
+                <span class="date sub-text"> &nbsp;on December 5th, 2016</span>
+                <p>Hello this is a test comment.</p>
+                <br>
+                <a id="commentExpand" data-toggle="collapse" href="#replyComments">View Replies</a>
+                <div id="replyComments" class="collapse">
+                  <ul class="img-comment-list reply">
+                    <li>
+                      <div class="comment-text reply">
+                        <strong><a href="">Robert Doe</a></strong>
+                        <span class="date sub-text"> &nbsp;on December 85th, 2916</span>
+                        <p>Hello this is a test comment and this comment is particularly very long and it goes on and on and
+                          on.
+                        </p>
+
+                      </div>
+                    </li>
+                    <li>
+                      <div class="comment-text reply">
+                        <strong><a href="">Banana Doe</a></strong>
+                        <span class="date sub-text">&nbsp;on December 5th, 2016</span>
+                        <p>TEST comment.</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="comment-text">
+                <strong><a href="">Clip Clap</a></strong>
+
+                <span class="date sub-text"> &nbsp;on December 85th, 2916</span>
+                <p>Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p>
+
+              </div>
+            </li>
+            <li>
+              <div class="comment-text">
+                <strong><a href="">Bing Bong</a></strong>
+                <span class="date sub-text">&nbsp;on December 5th, 2016</span>
+                <p class="">Hello this is a test comment example.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="individualPost">
+
+        <div class="img-poster clearfix">
+          <a href=""><img class="img-circle" src="images/robert1.jpg" alt="goku"></a>
+          <strong><a href="">Clam Doe</a></strong>
+          <p>12 minutes ago</p>
+        </div>
+
+
+        <div class="postedText">
+          <p>Example Text Post. ets see how far this goes and how much space it takes up and lets have fun and play basketball</p>
+        </div>
+
+        <br>
+        <a href="#" class="glyphicon glyphicon-heart"></a>
+        <a href="#" class="glyphicon glyphicon-comment"></a>
+
+        <a id="commentExpand" data-toggle="collapse" href="#commentComments" class="pull-right"> 95 comments</a>
+        <a id="commentExpand" data-toggle="collapse" href="#commentComments" class="pull-right">5 likes&nbsp;&nbsp;&nbsp; </a>
+        <div id="commentComments" class="collapse">
+          <ul class="img-comment-list">
+            <li>
+              <div class="comment-text">
+                <strong><a href="">Jane Doe</a></strong>
+                <span class="date sub-text">&nbsp;on December 5th, 2016</span>
+                <p>Hello this is a test comment.</p>
+                <br>
+                <a id="commentExpand" data-toggle="collapse" href="#replyCommentComments">View Replies</a>
+                <div id="replyCommentComments" class="collapse">
+                  <ul class="img-comment-list reply">
+                    <li>
+                      <div class="comment-text reply">
+                        <strong><a href="">Robert Doe</a></strong>
+                        <span class="date sub-text">&nbsp;on December 5th, 2016</span>
+                        <p>Hello this is a test comment and this comment is particularly very long and it goes on and on and
+                          on.
+
+                      </div>
+                    </li>
+                    <li>
+
+                      <div class="comment-text reply">
+                        <strong><a href="">Banana Doe</a></strong>
+                        <span class="date sub-text">&nbsp;on December 5th, 2016</span>
+                        <p class="">Hello this is a test comment.</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </li>
+            <li>
+              <div class="comment-text">
+                <strong><a href="">Jane Doe</a></strong>
+                <span class="date sub-text">&nbsp;on December 5th, 2016</span>
+                <p>Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p>
+
+              </div>
+            </li>
+            <li>
+              <div class="comment-text">
+                <strong><a href="">Jane Doe</a></strong>
+                <span class="date sub-text">&nbsp;on December 5th, 2016</span>
+                <p class="">Hello this is a test comment.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+        <p>ADS</p>
+      </div>
+      <div class="well">
+        <p>ADS</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="container-fluid text-center">
+    <hr>
+    <p>Footer Text</p>
+    <hr>
+  </footer>
+
+</body>
+
+</html>

@@ -37,4 +37,11 @@ $(document).ready( function() {
 
             $('#img-upload').attr('src', "");
         })
+
+        $("#commentInput").keypress(function(event) {
+    if (event.which == 13) {
+        event.preventDefault();
+        $("form").submit();
+    }
+});
 	});

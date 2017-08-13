@@ -1,66 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Profile Page</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="js/script.js"></script>
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Profile Page</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
 
 </head>
 
 <body>
 
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-        <a class="navbar-brand" href="feed.html"><img class="logo" src="images/tempLogo.JPG"  alt="temp logo"> </a>
+                <a class="navbar-brand" href="feed.html"><img class="logo" src="images/tempLogo.JPG"  alt="temp logo"> </a>
 
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <form class="navbar-form" role="search" style="display:inline-block">
-          <div class="form-group input-group">
-            <input type="text" class="form-control" placeholder="Search..">
-            <span class="input-group-btn">
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <form class="navbar-form" role="search" style="display:inline-block">
+                    <div class="form-group input-group">
+                        <input type="text" class="form-control" placeholder="Search..">
+                        <span class="input-group-btn">
             <button class="btn btn-default" type="button">
               <span class="glyphicon glyphicon-search"></span>
-            </button>
-            </span>
-          </div>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span><img class="profile-circle" src="images/goku.jpg" alt="profile pic"></span> My Account</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+                        </button>
+                        </span>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span><img class="profile-circle" src="images/goku.jpg" alt="profile pic"></span> My Account</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-  <div class="container-fluid text-center">
-    <div class="col-sm-2 sidenav">
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-    </div>
-
-    <div class="col-sm-8 text-left ">
-
-
-  <div class="img-poster clearfix">
-          <a href=""><img class="img-circle" src="images/goku.jpg" alt="goku"></a>
-          <strong><a href="">John Doe</a></strong>
-          <p>12 minutes ago</p>
+    <div class="container-fluid text-center">
+        <div class="col-sm-2 sidenav">
+            <p><a href="#">Link</a></p>
+            <p><a href="#">Link</a></p>
+            <p><a href="#">Link</a></p>
         </div>
 
+        <div class="col-sm-8 text-center ">
+
+            <div class="profileInfo">
+                <div class="panel panel-default">
+
+                    <div class="panel-heading clearfix">
+                        <img class="img-circle profilePagePic pull-left" src="images/goku.jpg" alt="goku">
+                        <h2>John Doe</h2>
+                        <p><a>@jonnydoeboy</a></p>
+                        <!-- <span><button class="btn btn-default btn-file ">Edit Profile </button>&nbsp&nbsp<a class="glyphicon glyphicon-wrench " data-toggle="collapse" data-target="#imageToggle"></a>
+            -->
+                        <button class="btn btn-default btn-file ">Edit Profile </button>&nbsp&nbsp<a class="glyphicon glyphicon-wrench "
+                            data-toggle="collapse" data-target="#imageToggle"></a>
+
+                        <ul class="nav nav-tabs nav-justified">
+                            <li><a href="#" class="glyphicon glyphicon-picture profileInfo"> 127 Posts</a></li>
+                            <li><a href="#" class="glyphicon glyphicon-user profileInfo"> 779 Followers</a></li>
+                            <li><a href="#" class="glyphicon glyphicon-user  profileInfo"> 671 Following</a></li>
+                        </ul>
+
+
+                    </div>
+                    <div class="panel-body">
+
+                        <ul class="nav nav-tabs nav-justified">
+                            <li class="active "><a data-toggle="tab" href="#grid" class="glyphicon glyphicon-th postList"></a></li>
+                            <li><a data-toggle="tab" href="#list" class="glyphicon glyphicon-th-list postList"></a></li>
+                            <li><a data-toggle="tab" href="#bookmark" class="glyphicon glyphicon-bookmark postList"></a></li>
+                        </ul>
+
+                        <div class="tab-content clearfix">
+                            <div class="tab-pane active" id="grid">
+
+                                <div class="row imagetiles">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+
+                                </div>
+                                <div class="row imagetiles">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+
+                                </div>
+
+                                <div class="row imagetiles">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+
+                                </div>
+                                <div class="row imagetiles">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+
+                                </div>
+                                <div class="row imagetiles">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+
+                                </div>
+                                <div class="row imagetiles">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+
+                            </div>
+                            <div class="tab-pane" id="list">
+                                <div class="profilePosts">
+
+                                    <div class="img-poster clearfix">
+                                        <a href=""><img class="img-circle" src="images/goku.jpg" alt="goku"></a>
+                                        <strong><a href="">John Doe</a></strong>
+                                        <p>12 minutes ago</p>
+                                    </div>
+
+                                    <div class="postedImage">
+                                        <img src="images/banana.jpg" alt="banana">
+                                    </div>
+
+                                    <br>
+
+                                    <a href="#"><img src="images/heart.png" class="reactButton" > &nbsp</a>
+                                    <a href="#comments" data-toggle="collapse"><img src="images/comment.png"  class="reactButton" ></a>
+                                    <a id="commentExpand" data-toggle="collapse" href="#comments" class="pull-right"> 95 comments</a>
+                                    <a id="commentExpand" data-toggle="collapse" href="#comments" class="pull-right">5 likes&nbsp;&nbsp;&nbsp; </a>
+
+                                    <div id="comments" class="collapse">
+                                        <ul class="img-comment-list">
+                                            <li>
+                                                <div class="comment-text">
+                                                    <strong><a href="">Jane Doe</a></strong>
+                                                    <span class="date sub-text"> &nbsp;on December 5th, 2016</span>
+                                                    <p>Hello this is a test comment.</p>
+                                                    <br>
+                                                    <a id="commentExpand" data-toggle="collapse" href="#replyComments">View Replies</a>
+                                                    <div id="replyComments" class="collapse">
+                                                        <ul class="img-comment-list reply">
+                                                            <li>
+                                                                <div class="comment-text reply">
+                                                                    <strong><a href="">Robert Doe</a></strong>
+                                                                    <span class="date sub-text"> &nbsp;on December 85th, 2916</span>
+                                                                    <p>Hello this is a test comment and this comment is particularly
+                                                                        very long and it goes on and on and on.
+                                                                    </p>
+
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="comment-text reply">
+                                                                    <strong><a href="">Banana Doe</a></strong>
+                                                                    <span class="date sub-text">&nbsp;on December 5th, 2016</span>
+                                                                    <p>TEST comment.</p>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="comment-text">
+                                                    <strong><a href="">Clip Clap</a></strong>
+
+                                                    <span class="date sub-text"> &nbsp;on December 85th, 2916</span>
+                                                    <p>Hello this is a test comment and this comment is particularly very long
+                                                        and it goes on and on and on.</p>
+
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="comment-text">
+                                                    <strong><a href="">Bing Bong</a></strong>
+                                                    <span class="date sub-text">&nbsp;on December 5th, 2016</span>
+                                                    <p class="">Hello this is a test comment example.</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <div class="profilePosts">
+
+                                    <div class="img-poster clearfix">
+                                        <a href=""><img class="img-circle" src="images/goku.jpg" alt="goku"></a>
+                                        <strong><a href="">John Doe</a></strong>
+                                        <p>12 minutes ago</p>
+                                    </div>
+
+
+                                    <div class="postedText">
+                                        <p>Example Text Post. ets see how far this goes and how much space it takes up and lets
+                                            have fun and play basketball</p>
+                                    </div>
+
+                                    <br>
+                                    <a href="#"><img src="images/heart.png" class="reactButton" > &nbsp</a>
+                                    <a href="#commentComments" data-toggle="collapse"><img src="images/comment.png"  class="reactButton" ></a>
+
+                                    <a id="commentExpand" data-toggle="collapse" href="#commentComments" class="pull-right"> 95 comments</a>
+                                    <a id="commentExpand" data-toggle="collapse" href="#commentComments" class="pull-right">5 likes&nbsp;&nbsp;&nbsp; </a>
+                                    <div id="commentComments" class="collapse">
+                                        <ul class="img-comment-list">
+                                            <li>
+                                                <div class="comment-text">
+                                                    <strong><a href="">Jane Doe</a></strong>
+                                                    <span class="date sub-text">&nbsp;on December 5th, 2016</span>
+                                                    <p>Hello this is a test comment.</p>
+                                                    <br>
+                                                    <a id="commentExpand" data-toggle="collapse" href="#replyCommentComments">View Replies</a>
+                                                    <div id="replyCommentComments" class="collapse">
+                                                        <ul class="img-comment-list reply">
+                                                            <li>
+                                                                <div class="comment-text reply">
+                                                                    <strong><a href="">Robert Doe</a></strong>
+                                                                    <span class="date sub-text">&nbsp;on December 5th, 2016</span>
+                                                                    <p>Hello this is a test comment and this comment is particularly
+                                                                        very long and it goes on and on and on.
+
+                                                                </div>
+                                                            </li>
+                                                            <li>
+
+                                                                <div class="comment-text reply">
+                                                                    <strong><a href="">Banana Doe</a></strong>
+                                                                    <span class="date sub-text">&nbsp;on December 5th, 2016</span>
+                                                                    <p class="">Hello this is a test comment.</p>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="comment-text">
+                                                    <strong><a href="">Jane Doe</a></strong>
+                                                    <span class="date sub-text">&nbsp;on December 5th, 2016</span>
+                                                    <p>Hello this is a test comment and this comment is particularly very long
+                                                        and it goes on and on and on.</p>
+
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="comment-text">
+                                                    <strong><a href="">Jane Doe</a></strong>
+                                                    <span class="date sub-text">&nbsp;on December 5th, 2016</span>
+                                                    <p class="">Hello this is a test comment.</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="tab-pane" id="bookmark">
+
+                                <div class="row imagetiles">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+
+                                </div>
+                                <div class="row imagetiles">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+
+                                </div>
+
+                                <div class="row imagetiles">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+
+                                </div>
+                                <div class="row imagetiles">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+
+                                </div>
+                                <div class="row imagetiles">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+
+                                </div>
+                                <div class="row imagetiles">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <a href="#"><img src=images/banana.jpg class="img-responsive"></a>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
 
 
 
@@ -68,32 +408,30 @@
 
 
 
-   <ul class="nav nav-tabs nav-justified">
-    <li class="active " ><a data-toggle="tab" href="#home" class="glyphicon glyphicon-th postList"></a></li>
-    <li><a data-toggle="tab" href="#menu1" class="glyphicon glyphicon-th-list postList"></a></li>
-    <li><a data-toggle="tab" href="#menu2" class="glyphicon glyphicon-bookmark postList"></a></li>
-  </ul>
 
 
 
 
+
+
+
+        </div>
+
+        <div class="col-sm-2 sidenav">
+            <div class="well">
+                <p>ADS</p>
+            </div>
+            <div class="well">
+                <p>ADS</p>
+            </div>
+        </div>
     </div>
 
-    <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>ADS</p>
-      </div>
-      <div class="well">
-        <p>ADS</p>
-      </div>
-    </div>
-  </div>
-
-  <footer class="container-fluid text-center">
-    <hr>
-    <p>Footer Text</p>
-    <hr>
-  </footer>
+    <footer class="container-fluid text-center">
+        <hr>
+        <p>Footer Text</p>
+        <hr>
+    </footer>
 
 </body>
 

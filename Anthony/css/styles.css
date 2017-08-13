@@ -178,3 +178,29 @@
 .postList {
     font-size:20px;
 }
+
+.profilePagePic{
+    height:150px;
+    width: 150px;
+}
+
+.profIMG {
+    display:inline-block;
+    width:200px;
+    height:200px;
+}
+
+.imagetiles, .col-lg-3.col-md-3.col-sm-3.col-xs-6{
+  padding-top: 20px;
+ 
+ 
+}
+
+.profilePosts{
+    padding: 10px;
+      margin: auto;
+      margin-bottom:20px;
+      text-align: left;
+      box-shadow: 1px 1px 10px #888888;
+}
+  

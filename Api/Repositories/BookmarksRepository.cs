@@ -18,6 +18,7 @@ namespace Api.Repositories {
             this.db = context;
         }
     
+		//Add bookmarks to Bookmarks Table
         public Task<Bookmarks> AddBookmarks(int userId, params int[] postIds) {
             Bookmarks bookmark = new Bookmarks() {
                 UserId = userId,
@@ -35,6 +36,7 @@ namespace Api.Repositories {
             return null;
         }
 
+		//Remove Bookmarks from Bookmarks Table
         public Task<Bookmarks> RemoveBookmarks(int userId, params int[] postIds) {
             FilterDefinition<Bookmarks> filter = GetUserIdFilter(userId);
             Task<Bookmarks> removeTask = MongoArrayUtils<Bookmarks>.RemoveFromArray<int>(db.Bookmarks, filter, POST_IDS, postIds);
@@ -42,6 +44,7 @@ namespace Api.Repositories {
             return removeTask;
         }
 
+		//returns a collection of bookmarks for a user
         public Task<Bookmarks> UpdateBookmark(int userId, int oldPostId, int newPostId) {
             FilterDefinition<Bookmarks> filter = GetUserIdFilter(userId);
 
@@ -49,16 +52,19 @@ namespace Api.Repositories {
 
             return task;
         }
-
+	
+		//returns the amount of bookmarks a user has
         public int GetBookmarksCount(int userId) {
             int count = db.Bookmarks.Where(e => e.UserId == userId).FirstOrDefault().Count;
             return count;
         }
 
+		//returns a collection of the bookmarks, by bookmarkID, a user has 
         public IEnumerable<int> GetAllBookmarks(int userId) {
             return GetBookmarksInRange(userId, 0);
         }
 
+		//returns a collection of Posts that have the same bookmark
         public IEnumerable<Posts> GetAllBookmarksPosts(int userId) {
             return GetBookmarksPostsInRange(userId, 0);
         }

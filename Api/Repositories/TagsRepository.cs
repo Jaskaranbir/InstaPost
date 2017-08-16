@@ -20,6 +20,7 @@ namespace Api.Repositories
             this.db = context;
         }
 
+		//Adds a new tag to Tags Table
         private Task<Tags> AddTag(string tagText, params int[] postIds) {
             Tags tag = new Tags() {
                 Tag = tagText,
@@ -35,6 +36,7 @@ namespace Api.Repositories
             return null;
         }
         
+		//returns an array of tasks that have been added to a post
         public Task<Tags>[] AddPostTags(string[] tagTexts, int postId) {
             Task<Tags>[] tasks = new Task<Tags>[tagTexts.Length];
 
@@ -44,6 +46,7 @@ namespace Api.Repositories
             return tasks;
         }
 
+		//Removes tag from Tags table
         public Task<Tags> RemoveTag(string tagText, int postId) {
             FilterDefinition<Tags> filter = GetTagTextFilter(tagText);
 
@@ -52,13 +55,15 @@ namespace Api.Repositories
             return task;
         }
 
+		//returns a collection of PostID's that contain tag
         public IEnumerable<int> GetPostsByTag(string tagText, int count = 10, int skip = 0) {
             FilterDefinition<Tags> filter = GetTagTextFilter(tagText);
 
             IEnumerable<int> array = MongoArrayUtils<Tags>.ArrayIntSplice(db.Tags, POST_IDS, filter, count, skip);
             return array;
         }
-
+		
+		//returns a collection of Post objects that contain tag
         public IEnumerable<Posts> GetPostsObjByTag(string tagText, int count = 10, int skip = 0) {
             IEnumerable<Posts> posts = GetPostsByTag(tagText, count, skip)
                 .Select(e =>
@@ -68,11 +73,13 @@ namespace Api.Repositories
             return posts;
         }
 
+		//returns the amount of posts that have a specific tag
         public long GetPostCountByTag(string tagText) {
             long count = db.Tags.Find(e => e.Tag == tagText).Count();
             return count;
         }
 
+		//returns a filter for tags
         public FilterDefinition<Tags> GetTagTextFilter(string tagText) {
             FilterDefinition<Tags> filter = Builders<Tags>.Filter.Eq(TAG, tagText);
             return filter;

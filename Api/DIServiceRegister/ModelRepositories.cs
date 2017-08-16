@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Api.DIServiceRegister {
     public class ModelRepositories
     {
-
+        //Dependency Injection to allow to achieve loose coupling between the objects below and their appropriate dependencies
         public static void Register(IServiceCollection services) {
             services.AddScoped<IAdministratorsRepository, AdministratorsRepository>();
             services.AddScoped<IBookmarksRepository, BookmarksRepository>();

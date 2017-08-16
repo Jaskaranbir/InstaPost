@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Api.ComponentModels
 {
+    // Simply contains the data we need to display a Comment. ONLY to display post on frontend.
+    // So no unnecessary data is passed over network.
     public class Comment
     {
         public int CommentId { get; }

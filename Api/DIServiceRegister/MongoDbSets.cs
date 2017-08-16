@@ -10,7 +10,7 @@ namespace Api.DIServiceRegister
 {
     public class MongoDbSets
     {
-
+		//Creating Singletons of each DB to allow for only one object to be instantiated throughout entire system
         public static void Register(IServiceCollection services) {
             services.AddSingleton<IMongoDbSet<Bookmarks>, MongoDbSet<Bookmarks>>();
             services.AddSingleton<IMongoDbSet<Followers>, MongoDbSet<Followers>>();

@@ -13,12 +13,14 @@ namespace Api.Repositories
             this.db = context;
         }
 
+		//Adds a location to Locations Table
         public Locations AddLocation(Locations location) {
             db.Locations.Add(location);
             db.SaveChanges();
             return location;
         }
 
+		//Updates Location information in Locations Table
         public Locations UpdateLocation(int locationId, string address, string city, string country) {
             Locations locations = db.Locations.SingleOrDefault(e => e.LocationId == locationId);
 
@@ -30,10 +32,12 @@ namespace Api.Repositories
             return locations;
         }
         
+		//returns the location associated with a post
         public Locations GetLocation(int postId) {
             return db.Locations.SingleOrDefault(e => e.PostId == postId);
         }
-
+		
+		//removes a location value from a post and Locations Table
         public Locations RemoveLocation(int postId) {
             Locations location = new Locations() {
                 PostId = postId,
@@ -44,10 +48,12 @@ namespace Api.Repositories
             return location;
         }
 
+		//returns posts based on a locationID
         public Posts GetPostsByLocation(int locationId) {
             return db.Locations.SingleOrDefault(e => e.LocationId == locationId).Post;
         }
 
+		//returns a collection of locations that contain the searchText
         public IEnumerable<Locations> LocationSearch(string searchText, int skip = 0, int count = 20) {
             IEnumerable<Locations> locations = db.Locations.Where(e => 
                 e.City.Contains(searchText)

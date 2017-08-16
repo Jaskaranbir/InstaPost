@@ -19,6 +19,7 @@ namespace Api.Repositories {
             this.db = context;
         }
 
+		//Adds follower to Followers Table
         public bool AddFollower(int followerUserId, int followedUserId) {
             Followers follow = new Followers() {
                 FollowerUserId = followerUserId,
@@ -33,7 +34,8 @@ namespace Api.Repositories {
                 return false;
             }
         }
-
+		
+		//Removes Follower from Followers Table
         public bool RemoveFollower(int followerUserId, int followedUserId) {
             Followers follow = db.Followers.Remove(e =>
                 e.FollowedUserId == followedUserId
@@ -51,6 +53,7 @@ namespace Api.Repositories {
             return follower != null;
         }
 
+		//Returns a database entry that shows who is following a user
         public BsonElement GetFollowers(int followedUserId, int skip = 0, int count = 20) {
             FilterDefinition<Followers> filter = Builders<Followers>.Filter.Eq(FOLLOWED_USER_ID, followedUserId);
 
@@ -72,6 +75,7 @@ namespace Api.Repositories {
                 .FirstOrDefault();
         }
 
+		//Returns a collection of User Objects based ontheir followerUserId
         public IEnumerable<Users> GetFollowersUserObj(int followedUserId, int skip = 0, int count = 20) {
             IEnumerable<Users> ids = GetFollowers(followedUserId, skip, count)
                 .Value
@@ -82,6 +86,7 @@ namespace Api.Repositories {
             return ids;
         }
 
+		//Returns the amount of followers a user has
         public long GetFollowersCount(int followedUserId) {
             long count = db.Followers.Find(e => e.FollowedUserId == followedUserId).Count();
             return count;

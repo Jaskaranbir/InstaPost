@@ -19,6 +19,7 @@ namespace Api.Repositories {
             this.db = context;
         }
 
+		//Adds new Report to Reports Table
         public Task<Reports> AddReportPost(int postId, int userId, string comment) {
             FilterDefinition<Reports> filter = GetPostIdFilter(postId);
 
@@ -42,6 +43,9 @@ namespace Api.Repositories {
             return null;
         }
 
+		//Sets string value to be updated in database
+		//string value controls whether post is still reported
+		//returns a report
         public Task<Reports> SetResolved(int postId, int userId) {
             FilterDefinition<Reports> filter = GetPostIdFilter(postId);
             UpdateDefinition<Reports> update = Builders<Reports>.Update.Set(IS_RESOLVED, true);
@@ -50,6 +54,7 @@ namespace Api.Repositories {
             return task;
         }
 
+		//Retrieves a collection of Reported Posts
         public IEnumerable<int> GetReportedPosts(int skip = 0, int count = 10) {
             FilterDefinition<Reports> filter = Builders<Reports>.Filter.Eq(IS_RESOLVED, false);
 
@@ -57,6 +62,8 @@ namespace Api.Repositories {
             return array;
         }
 
+		//Retrieves a collection of Reported Post Objects
+		//Order retrieved by date and then time
         public IEnumerable<Posts> GetReportedPostObj(int skip = 0, int count = 10) {
             IEnumerable<Posts> posts = GetReportedPosts(skip, count)
                 .Select(e => 
@@ -68,11 +75,13 @@ namespace Api.Repositories {
             return posts;
         }
 
+		//returns the number of times a post has been reported
         public int GetPostReportedCount(int postId) {
             int count = db.Reports.Find(e => e.PostId == postId).FirstOrDefault().Count;
             return count;
         }
 
+		//returns a filter based on the reports of a certain post ID
         private FilterDefinition<Reports> GetPostIdFilter(int postId) {
             FilterDefinition<Reports> filter = Builders<Reports>.Filter.Eq(POST_ID, postId);
             return filter;

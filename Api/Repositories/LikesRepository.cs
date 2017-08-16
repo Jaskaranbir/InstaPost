@@ -12,12 +12,19 @@ namespace Api.Repositories {
 
         // Fields Used
         private static readonly string USER_IDS = "l_userIds";
+<<<<<<< Updated upstream
 
         public LikesRepository(InstaPostContext context, IPostsRepository postRepo) {
+=======
+		
+		
+        public LikesRepository(InstaPostContext context) {
+>>>>>>> Stashed changes
             this.db = context;
             this.postRepo = postRepo;
         }
 
+		//Add a user's like to a Post
         public Task<Likes> AddLike(int postId, params int[] userIds) {
             Likes like = new Likes() {
                 PostId = postId,
@@ -25,6 +32,7 @@ namespace Api.Repositories {
             };
             FilterDefinition<Likes> filter = GetPostIdFilter(postId);
 
+			//Checks to see if an instance of Like is available
             bool isEntityPresent = db.Likes.CheckAndCreateEntityBool(like, filter);
             if (isEntityPresent) {
                 Task<Likes> task = MongoArrayUtils<Likes>.AddToArray<int>(db.Likes, filter, USER_IDS, userIds);
@@ -36,6 +44,7 @@ namespace Api.Repositories {
             return null;
         }
 
+		//Remove a user's like from a post
         public Task<Likes> RemoveLike(int postId, params int[] userIds) {
             FilterDefinition<Likes> filter = GetPostIdFilter(postId);
 
@@ -43,14 +52,17 @@ namespace Api.Repositories {
             return task;
         }
 
+		//return the total amount of likes a post has
         public IEnumerable<int> GetAllLikes(int postId) {
             return GetLikesInRange(postId, 0);
         }
 
+		//Returns a collection of users who have liked a post
         public IEnumerable<Users> GetAllLikesUsers(int postId) {
             return GetLikesUsersInRange(postId, 0);
         }
 
+		//Returns array
         public IEnumerable<int> GetLikesInRange(int postId, int count, int skip = 0) {
             FilterDefinition<Likes> filter = GetPostIdFilter(postId);
 
@@ -58,6 +70,7 @@ namespace Api.Repositories {
             return array;
         }
 
+		//Returns a collection of users who have liked a post
         public IEnumerable<Users> GetLikesUsersInRange(int postId, int count, int skip = 0) {
             IEnumerable<Users> users = GetLikesInRange(postId, count, skip)
                 .Select(e =>
@@ -67,6 +80,7 @@ namespace Api.Repositories {
             return users;
         }
 
+		//Returns filter used to find post(s)
         private FilterDefinition<Likes> GetPostIdFilter(int postId) {
             return Builders<Likes>.Filter.Where(e => e.PostId == postId);
         }

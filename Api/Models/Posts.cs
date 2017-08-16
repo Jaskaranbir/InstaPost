@@ -2,9 +2,19 @@
 using System;
 using System.Collections.Generic;
 
+<<<<<<< Updated upstream
 namespace Api.Models {
     public partial class Posts {
         public Posts() {
+=======
+namespace Api.Models
+{
+    public partial class Posts
+    {
+		//allows for comments to be linked to an instantiation of a post
+        public Posts()
+        {
+>>>>>>> Stashed changes
             Comments = new HashSet<Comments>();
         }
 

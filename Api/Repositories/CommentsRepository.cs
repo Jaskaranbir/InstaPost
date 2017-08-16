@@ -13,12 +13,14 @@ namespace Api.Repositories
             this.db = context;
         }
 
+		//Adds comment to Comments Table
         public Comments AddComment(Comments comment) {
             db.Comments.Add(comment);
             db.SaveChanges();
             return comment;
         }
 
+		//Updates a comment in the Comments Table
         public Comments UpdateComment(int commentId, string commentText) {
             Comments comment = db.Comments.SingleOrDefault(e => e.CommentId == commentId);
 
@@ -28,6 +30,7 @@ namespace Api.Repositories
             return comment;
         }
 
+		//Removes a comment from the Comments Table
         public Comments RemoveComment(int commentId) {
             Comments comment = new Comments() {
                 CommentId = commentId,
@@ -39,10 +42,12 @@ namespace Api.Repositories
             return comment;
         }
 
+		//Returns a collection of comments associated with a post
         public IEnumerable<Comments> LoadInitial(int postId) {
             return LoadRange(postId);
         }
 
+		//Returns a collection in order of comments posted last, associated with a post 
         public IEnumerable<Comments> LoadRange(int postId, int count = 10, int skip = 0, bool isNewerFirst = true) {
             IQueryable<Comments> comments = db.Comments
                 .Where(e => e.PostId == postId);
@@ -58,6 +63,7 @@ namespace Api.Repositories
                     .AsEnumerable();
         }
 
+		//Returns a collection of comments that were posted from most recently 
         public IEnumerable<Comments> GetLatest(int postId, int lastCommentId, int limit) {
             IEnumerable<Comments> comments = db.Comments
                 .Where(e => e.PostId == postId && e.CommentId > lastCommentId)

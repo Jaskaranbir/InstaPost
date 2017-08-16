@@ -31,13 +31,15 @@ namespace Api.Repositories
             Cloudinary cloudinary = new Cloudinary(account);
             this.imgCloud = cloudinary;
         }
-
+		
+		//Adds new post to Posts Table
         public Posts AddPost(Posts post) {
             db.Posts.Add(post);
             db.SaveChanges();
             return post;
         }
 
+		//Updates a Post in Posts Table
         public Posts UpdatePost(int postId, string postText, string postImage) {
             Posts post = db.Posts.SingleOrDefault(e => e.PostId == postId);
 
@@ -48,6 +50,7 @@ namespace Api.Repositories
             return post;
         }
 
+<<<<<<< Updated upstream
         public Posts UpdatePostLikesCount(int postId) {
             Posts post = db.Posts.SingleOrDefault(e => e.PostId == postId);
             post.LikesCount++;
@@ -56,6 +59,9 @@ namespace Api.Repositories
             return post;
         }
 
+=======
+		//Removes Post from Posts Table
+>>>>>>> Stashed changes
         public Posts RemovePost(int postId) {
             Posts post = new Posts() {
                 PostId = postId,
@@ -71,6 +77,7 @@ namespace Api.Repositories
             return LoadRange();
         }
 
+		//Returns collection of Posts In order of Post date and then Post time to show most recent post first
         public IEnumerable<Posts> LoadRange(int count = 10, int skip = 0, bool isNewerFirst = true) {
             IQueryable<Posts> posts = db.Posts;
 
@@ -85,6 +92,7 @@ namespace Api.Repositories
                     .AsEnumerable();
         }
 
+		//Returns new posts that were added last to the Posts Table
         public IEnumerable<Posts> GetLatest(int lastPostId, int limit) {
             IEnumerable<Posts> posts = db.Posts
                 .Where(e => e.PostId > lastPostId)

@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using Api.MongoWrappers;
 
 namespace Api.Models {
+	//Instantiates the context of the application and loads all relevant data
     public partial class InstaPostContext : DbContext {
 
         public virtual DbSet<Administrators> Administrators { get; set; }
@@ -34,7 +35,8 @@ namespace Api.Models {
             this.Reports = Reports;
             this.Tags = Tags;
         }
-
+		
+		//Makes sure administrator has appropriate unique adminID, userID, and authority over users
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<Administrators>(entity => {
                 entity.HasKey(e => e.AdministratorId)
@@ -53,7 +55,10 @@ namespace Api.Models {
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Administrators_userId");
             });
-
+			
+			//Makes sure each comment has appropriate unique commentID, comment time and date and comment text
+			//Handles whether comment is parent or child. 
+			//Comment must have postID(associated post) and userID(associated user)
             modelBuilder.Entity<Comments>(entity => {
                 entity.HasKey(e => e.CommentId)
                     .HasName("PK_Comments_commentId");
@@ -105,6 +110,8 @@ namespace Api.Models {
                     .HasConstraintName("FK_Comments_userId");
             });
 
+			//Location is made up of locationID, name, address, city, country. 
+			//Location is associated with a user(ID) and post(ID) 
             modelBuilder.Entity<Locations>(entity => {
                 entity.HasKey(e => e.LocationId)
                     .HasName("PK_Locations_locationId");
@@ -144,6 +151,8 @@ namespace Api.Models {
                     .HasConstraintName("FK_Locations_userId");
             });
 
+			//Post must have postID, date and time. 
+			//Post starts with 0 comments, likes by default 
             modelBuilder.Entity<Posts>(entity => {
                 entity.HasKey(e => e.PostId)
                     .HasName("PK_Post_postId");
@@ -184,6 +193,8 @@ namespace Api.Models {
                     .HasConstraintName("FK_Post_userId");
             });
 
+			//Users must have a unique primary key, being that 2 users with the same name may occur
+			//Must have unique email, usertag
             modelBuilder.Entity<Users>(entity => {
                 entity.HasKey(e => e.UserId)
                     .HasName("PK_User_userId");

@@ -13,6 +13,7 @@ namespace Api.Repositories
             this.db = context;
         }
 
+		//Adds a new Administrator to Administrators Table
         public void AddAdminUser(int userId) {
             Administrators admin = new Administrators() {
                 UserId = userId
@@ -20,16 +21,19 @@ namespace Api.Repositories
             db.Administrators.Add(admin);
         }
 
+		//Returns a user basedon their adminID
         public Users GetAdminUser(int adminId) {
             Users user = db.Administrators.SingleOrDefault(e => e.AdministratorId == adminId).User;
             return user;
         }
 
+		//Returns a boolean to check whether or not user is an admin
         public bool IsUserAdmin(int userId) {
             Administrators admin = db.Administrators.SingleOrDefault(e => e.UserId == userId);
             return admin != null;
         }
 
+		//Remove an administrator from Administrators Table
         public void RemoveAdminUser(int userId) {
             Administrators admin = db.Administrators.SingleOrDefault(e => e.UserId == userId);
             db.Administrators.Remove(admin);

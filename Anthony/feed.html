@@ -58,8 +58,7 @@
       <div class="panel panel-default createPost">
         <div class="panel-heading clearfix">
           <h4 class="panel-title pull-left">Make a post</h4>
-          <a class=" glyphicon glyphicon-picture pull-right photoButton" data-toggle="collapse" data-target="#imageToggle"></a>
-
+        
 
         </div>
         <div class="panel-body">
@@ -76,11 +75,15 @@
                     Browse… <input type="file" id="imgInp">  
                 </span>
                 </span>
-                <input type="text" class="form-control" readonly>
+                <input type="text" class="form-control" readonly id="pictureUrl">
               </div>
               <img id='img-upload' />
+              <button class="btn btn-danger pull-left"  value="Clear Image">Clear Image</button>
+             <br><br>
             </div>
-            <input class="btn btn-danger" type="reset" value="Clear">
+            <br><br>
+              <button class="btn btn-secondary btn pull-left" data-toggle="collapse" data-target="#imageToggle">Upload Photo</button>
+
             <button type="submit" class="btn btn-primary btn pull-right">Post</button>
           </form>
         </div>
@@ -119,7 +122,14 @@
                 <strong><a href="">Jane Doe</a></strong>
                 <span class="date sub-text"> &nbsp;on December 5th, 2016</span>
                 <p>Hello this is a test comment.</p>
-                <br>
+
+                <a id="commentExpand" data-toggle="collapse" href="#commentOnComments"> Comment</a>
+                <form action="#" id="commentOnComments" class="collapse">
+
+                  <input type="text" class="form-control" placeholder="Write a comment..." id="commentInput">
+
+                </form>
+
                 <a id="commentExpand" data-toggle="collapse" href="#replyComments">View Replies</a>
                 <div id="replyComments" class="collapse">
                   <ul class="img-comment-list reply">
@@ -131,6 +141,16 @@
                           on.
                         </p>
 
+                        <a id="commentExpand" data-toggle="collapse" href="#commentOnComments1"> Comment</a>
+                        <form action="#" id="commentOnComments1" class="collapse">
+
+                          <input type="text" class="form-control" placeholder="Write a comment..." id="commentInput">
+
+                        </form>
+
+                        <a id="commentExpand" data-toggle="collapse" href="#">View Replies</a>
+
+
                       </div>
                     </li>
                     <li>
@@ -138,6 +158,16 @@
                         <strong><a href="">Banana Doe</a></strong>
                         <span class="date sub-text">&nbsp;on December 5th, 2016</span>
                         <p>TEST comment.</p>
+
+                        <a id="commentExpand" data-toggle="collapse" href="#commentOnComments2"> Comment</a>
+                        <form action="#" id="commentOnComments2" class="collapse">
+
+                          <input type="text" class="form-control" placeholder="Write a comment..." id="commentInput">
+
+                        </form>
+
+                        <a id="commentExpand" data-toggle="collapse" href="#">View Replies</a>
+
                       </div>
                     </li>
                   </ul>
@@ -151,6 +181,15 @@
                 <span class="date sub-text"> &nbsp;on December 85th, 2916</span>
                 <p>Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p>
 
+                <a id="commentExpand" data-toggle="collapse" href="#commentOnComments3"> Comment</a>
+                <form action="#" id="commentOnComments3" class="collapse">
+
+                  <input type="text" class="form-control" placeholder="Write a comment..." id="commentInput">
+
+                </form>
+
+                <a id="commentExpand" data-toggle="collapse" href="#">View Replies</a>
+
               </div>
             </li>
             <li>
@@ -158,6 +197,16 @@
                 <strong><a href="">Bing Bong</a></strong>
                 <span class="date sub-text">&nbsp;on December 5th, 2016</span>
                 <p class="">Hello this is a test comment example.</p>
+
+                <a id="commentExpand" data-toggle="collapse" href="#commentOnComments4"> Comment</a>
+                <form action="#" id="commentOnComments4" class="collapse">
+
+                  <input type="text" class="form-control" placeholder="Write a comment..." id="commentInput">
+
+                </form>
+
+                <a id="commentExpand" data-toggle="collapse" href="#">View Replies</a>
+
               </div>
             </li>
           </ul>
@@ -185,7 +234,7 @@
         <a id="commentExpand" data-toggle="collapse" href="#commentComments" class="pull-right"> 95 comments</a>
         <a id="commentExpand" data-toggle="collapse" href="#commentComments" class="pull-right">5 likes&nbsp;&nbsp;&nbsp; </a>
         <div id="commentComments" class="collapse">
-           <form action="#">
+          <form action="#">
             <br>
             <input type="text" class="form-control" placeholder="Write a comment..." id="commentInput">
 
@@ -196,7 +245,13 @@
                 <strong><a href="">Jane Doe</a></strong>
                 <span class="date sub-text">&nbsp;on December 5th, 2016</span>
                 <p>Hello this is a test comment.</p>
-                <br>
+
+                <a id="commentExpand" data-toggle="collapse" href="#commentOnComments5"> Comment</a>
+                <form action="#" id="commentOnComments5" class="collapse">
+
+                  <input type="text" class="form-control" placeholder="Write a comment..." id="commentInput">
+
+                </form>
                 <a id="commentExpand" data-toggle="collapse" href="#replyCommentComments">View Replies</a>
                 <div id="replyCommentComments" class="collapse">
                   <ul class="img-comment-list reply">
@@ -206,6 +261,15 @@
                         <span class="date sub-text">&nbsp;on December 5th, 2016</span>
                         <p>Hello this is a test comment and this comment is particularly very long and it goes on and on and
                           on.
+                        </p>
+
+                        <a id="commentExpand" data-toggle="collapse" href="#commentOnComments6"> Comment</a>
+                        <form action="#" id="commentOnComments6" class="collapse">
+
+                          <input type="text" class="form-control" placeholder="Write a comment..." id="commentInput">
+
+                        </form>
+                        <a id="commentExpand" data-toggle="collapse" href="#">View Replies</a>
 
                       </div>
                     </li>
@@ -215,6 +279,15 @@
                         <strong><a href="">Banana Doe</a></strong>
                         <span class="date sub-text">&nbsp;on December 5th, 2016</span>
                         <p class="">Hello this is a test comment.</p>
+
+                        <a id="commentExpand" data-toggle="collapse" href="#commentOnComments7"> Comment</a>
+                        <form action="#" id="commentOnComments7" class="collapse">
+
+                          <input type="text" class="form-control" placeholder="Write a comment..." id="commentInput">
+
+                        </form>
+                        <a id="commentExpand" data-toggle="collapse" href="#">View Replies</a>
+
                       </div>
                     </li>
                   </ul>
@@ -228,6 +301,13 @@
                 <span class="date sub-text">&nbsp;on December 5th, 2016</span>
                 <p>Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p>
 
+                <a id="commentExpand" data-toggle="collapse" href="#commentOnComments8"> Comment</a>
+                <form action="#" id="commentOnComments8" class="collapse">
+
+                  <input type="text" class="form-control" placeholder="Write a comment..." id="commentInput">
+
+                </form>
+                <a id="commentExpand" data-toggle="collapse" href="#">View Replies</a>
               </div>
             </li>
             <li>
@@ -235,6 +315,14 @@
                 <strong><a href="">Jane Doe</a></strong>
                 <span class="date sub-text">&nbsp;on December 5th, 2016</span>
                 <p class="">Hello this is a test comment.</p>
+
+                <a id="commentExpand" data-toggle="collapse" href="#commentOnComments9"> Comment</a>
+                <form action="#" id="commentOnComments9" class="collapse">
+
+                  <input type="text" class="form-control" placeholder="Write a comment..." id="commentInput">
+
+                </form>
+                <a id="commentExpand" data-toggle="collapse" href="#">View Replies</a>
               </div>
             </li>
           </ul>

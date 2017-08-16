@@ -9,21 +9,39 @@ Keep settings page layout similar to github with our usual color scheme we discu
 	<link rel="stylesheet" href="./settingStyles.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<nav class="navbar navbar-default">
-<div class="container-fluid">
-	<div class="navbar-header">
-	<img id="logo" alt="Logo" src="./templogo.jpeg">
-		<a href="#settingsNav"></a>
-	</div>
-</div>
-	<div>
-	<ul class="nav navbar-nav navbar-right">
-		<li><a href="#"><img id="smallProfPic" src="./test.png"></a></li>
-	</ul>
-	</div>
-</nav>
 
 <body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+        <a class="navbar-brand" href="feed.html"><img class="logo" src="templogo.png"  alt="temp logo"> </a>
+
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <form class="navbar-form" role="search" style="display:inline-block">
+          <div class="form-group input-group">
+            <input type="text" class="form-control" placeholder="Search..">
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+            </span>
+          </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="profile.html"><span><img class="profile-circle" src="test.png" alt="profile pic"></span> My Account</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-3 col-lg-2">	

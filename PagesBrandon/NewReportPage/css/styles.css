@@ -203,14 +203,11 @@
       text-align: left;
       box-shadow: 1px 1px 10px #888888;
 }
-
-
-.dropdown {
-    display: block;
-    display: inline-block;
-    margin: 0px 3px;
-    position: relative;
+  
+#commentExpand{
+    font-size: 12px;
 }
+
 
 .dropdown { 
     display: inline-block;
@@ -303,4 +300,3 @@
 .dropdown input[type="checkbox"]:checked ~ .dropdown_content { display: block }
 
 .dropdown input[type="checkbox"] { display: none }
-  

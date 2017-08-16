@@ -34,7 +34,7 @@ $(document).ready( function() {
         }); 
         
         $(document).on('click', '.btn-danger', function(){
-
+			$("#pictureUrl").val("");
             $('#img-upload').attr('src', "");
         })
 

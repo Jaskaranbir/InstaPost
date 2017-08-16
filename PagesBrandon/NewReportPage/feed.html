@@ -10,17 +10,39 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
   <link rel="stylesheet" href="css/styles.css">
 
 </head>
 
 <body>
-  <nav class="navbar navbar-default navbar-fixed-top">
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img class="logo" src="images/tempLogo.JPG"  alt="temp logo"></a>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><img class="profile-circle" src="images/goku.jpg" alt="profile pic"></a></li>
-      </ul>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+        <a class="navbar-brand" href="feed.html"><img class="logo" src="images/tempLogo.JPG"  alt="temp logo"> </a>
+
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <form class="navbar-form" role="search" style="display:inline-block">
+          <div class="form-group input-group">
+            <input type="text" class="form-control" placeholder="Search..">
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+            </span>
+          </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="profile.html"><span><img class="profile-circle" src="images/goku.jpg" alt="profile pic"></span> My Account</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
 
@@ -30,27 +52,77 @@
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
     </div>
-
+  
     <div class="col-sm-8 text-left posts">
+ 
+        <div class="panel createPost">
+        <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                      <span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#contains">Contains</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#all">Anything</a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" class="form-control" name="x" placeholder="Search Term">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+        </div>
 
+      <div class="panel panel-default createPost">
+        <div class="panel-heading clearfix">
+          <h4 class="panel-title pull-left">Make a post</h4>
+          <a class=" glyphicon glyphicon-picture pull-right photoButton" data-toggle="collapse" data-target="#imageToggle"></a>
+
+
+        </div>
+        <div class="panel-body">
+          <form action="#" method="get">
+            <div class="form-group">
+              <textarea class="form-control" id="exampleTextarea" rows="2" placeholder="What would like to say...?"></textarea>
+            </div>
+            <div class="form-group collapse" id="imageToggle">
+              <br>
+              <label>Upload Image</label>
+              <div class="input-group">
+                <span class="input-group-btn">
+                <span class="btn btn-default btn-file">
+                    Browse… <input type="file" id="imgInp">  
+                </span>
+                </span>
+                <input type="text" class="form-control" readonly>
+              </div>
+              <img id='img-upload' />
+            </div>
+            <input class="btn btn-danger" type="reset" value="Clear">
+            <button type="submit" class="btn btn-primary btn pull-right">Post</button>
+          </form>
+        </div>
+      </div>
 
       <div class="individualPost">
 
         <div class="img-poster clearfix">
           <a href=""><img class="img-circle" src="images/goku.jpg" alt="goku"></a>
           <strong><a href="">John Doe</a></strong>
-        
-          <div class="dropdown" id="dropdown">
-            <div class="col-sm-8">
-              <a class="dropdown_button dropdown_close" href="#"><span class="arrow"></span></a>
-              <a class="dropdown_button dropdown_open" href="#dropdown"><span class="arrow"></span></a>
-              <ul class="dropdown_content">
-                  <li><a href="#">Edit Comment</a></li>
-                  <li><a href="#">Remove Comment</a></li>
-                  <li><a href="#">Mark-as-Solved</a></li>                                
-              </ul>
+
+           <div class="dropdown" id="dropdown">
+              <div class="col-sm-8">
+              <input type="checkbox" id="drop1" />
+                <label for="drop1" class="dropdown_button"><div class="arrow"></div></label>
+                <ul class="dropdown_content">
+                    <li><a href="#">Edit Comment</a></li>
+                    <li><a href="#">Remove Comment</a></li>
+                    <li><a href="#">Mark-as-Solved</a></li>                                
+                </ul>
+              </div>
             </div>
-          </div>
 
           <p>12 minutes ago</p>
         </div>
@@ -61,29 +133,21 @@
 
         <br>
 
-        <a href="#" class="glyphicon glyphicon-heart"></a>
-        <a href="#" class="glyphicon glyphicon-comment"></a>
+        <a href="#"><img src="images/heart.png" class="reactButton" > &nbsp</a>
+        <a href="#comments" data-toggle="collapse"><img src="images/comment.png"  class="reactButton" ></a>
         <a id="commentExpand" data-toggle="collapse" href="#comments" class="pull-right"> 95 comments</a>
-        <a id="commentExpand" data-toggle="collapse" href="#comments" class="pull-right">5 likes&nbsp;&nbsp;&nbsp;</a>
+        <a id="commentExpand" data-toggle="collapse" href="#comments" class="pull-right">5 likes&nbsp;&nbsp;&nbsp; </a>
 
         <div id="comments" class="collapse">
+          <form action="#">
+            <br>
+            <input type="text" class="form-control" placeholder="Write a comment..." id="commentInput">
+
+          </form>
           <ul class="img-comment-list">
             <li>
               <div class="comment-text">
                 <strong><a href="">Jane Doe</a></strong>
-
-                <div class="dropdown" id="dropdown">
-                  <div class="col-sm-8">
-                    <a class="dropdown_button dropdown_close" href="#"><span class="arrow"></span></a>
-                    <a class="dropdown_button dropdown_open" href="#dropdown"><span class="arrow"></span></a>
-                    <ul class="dropdown_content">
-                        <li><a href="#">Edit Comment</a></li>
-                        <li><a href="#">Remove Comment</a></li>
-                        <li><a href="#">Mark-as-Solved</a></li>                                
-                    </ul>
-                  </div>
-                </div>
-
                 <span class="date sub-text"> &nbsp;on December 5th, 2016</span>
                 <p>Hello this is a test comment.</p>
                 <br>
@@ -137,6 +201,19 @@
         <div class="img-poster clearfix">
           <a href=""><img class="img-circle" src="images/robert1.jpg" alt="goku"></a>
           <strong><a href="">Clam Doe</a></strong>
+
+          <div class="dropdown" id="dropdown">
+              <div class="col-sm-8">
+              <input type="checkbox" id="drop1" />
+                <label for="drop1" class="dropdown_button"><div class="arrow"></div></label>
+                <ul class="dropdown_content">
+                    <li><a href="#">Edit Comment</a></li>
+                    <li><a href="#">Remove Comment</a></li>
+                    <li><a href="#">Mark-as-Solved</a></li>                                
+                </ul>
+              </div>
+            </div>  
+
           <p>12 minutes ago</p>
         </div>
 
@@ -146,12 +223,17 @@
         </div>
 
         <br>
-        <a href="#" class="glyphicon glyphicon-heart"></a>
-        <a href="#" class="glyphicon glyphicon-comment"></a>
+        <a href="#"><img src="images/heart.png" class="reactButton" > &nbsp</a>
+        <a href="#commentComments" data-toggle="collapse"><img src="images/comment.png"  class="reactButton" ></a>
 
         <a id="commentExpand" data-toggle="collapse" href="#commentComments" class="pull-right"> 95 comments</a>
         <a id="commentExpand" data-toggle="collapse" href="#commentComments" class="pull-right">5 likes&nbsp;&nbsp;&nbsp; </a>
         <div id="commentComments" class="collapse">
+           <form action="#">
+            <br>
+            <input type="text" class="form-control" placeholder="Write a comment..." id="commentInput">
+
+          </form>
           <ul class="img-comment-list">
             <li>
               <div class="comment-text">

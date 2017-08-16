@@ -50,7 +50,7 @@ class PostingBox extends Component {
 
     reader.onloadend = () => {
       const result = reader.result
-      fetch(API.basePath + 'Accounts/profileimg', {
+      fetch(API.basePath + 'Users/profileimg', {
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
           'authorization': `Bearer ${authObj.getAccessToken()}`

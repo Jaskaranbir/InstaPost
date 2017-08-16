@@ -29,7 +29,7 @@ class RegisterProfile extends Component {
 
     reader.onloadend = () => {
       const result = reader.result
-      fetch(API.basePath + 'Accounts/profileimg', {
+      fetch(API.basePath + 'Users/profileimg', {
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
           'authorization': `Bearer ${authObj.getAccessToken()}`
@@ -47,7 +47,7 @@ class RegisterProfile extends Component {
   }
 
   register = (authObj) => {
-    fetch(`${API.basePath}accounts`, {
+    fetch(`${API.basePath}users`, {
       headers: {
         'Content-Type': 'application/json',
         authorization: `Bearer ${authObj.getAccessToken()}`

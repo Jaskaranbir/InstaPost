@@ -127,6 +127,13 @@ namespace Api.Repositories {
             });
         }
 
+        public Users UpdateUser(Users user) {
+            db.Attach<Users>(user);
+            db.Update<Users>(user);
+            db.SaveChanges();
+            return user;
+        }
+
         private string ToJson(object o) {
             return JsonConvert.SerializeObject(o);
         }

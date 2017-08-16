@@ -18,6 +18,7 @@ using Api.Repositories;
 using Api.Models.UIComponents;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
+using Api.ComponentModels;
 
 namespace Api.Controllers {
     [Route("api/[controller]")]
@@ -69,6 +70,12 @@ namespace Api.Controllers {
         [HttpGet("followings")]
         public long FollowingCount([FromQuery]int userId) {
             return followerRepo.GetFollowingCount(userId);
+        }
+
+        [HttpPost("update")]
+        public string UpdateUser([FromBody]Users user) {
+            Users newUser = userRepo.UpdateUser(user);
+            return ToJson(new UserComponent(newUser));
         }
 
         private string ToJson(object o) {

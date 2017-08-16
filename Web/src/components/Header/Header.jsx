@@ -12,7 +12,7 @@ class Header extends Component {
           <img className="profile-circle"
             src={userInfo.ProfilePicture}
             alt="profile pic" />
-          {userInfo.FirstName}
+          <span className="username">{userInfo.FirstName}</span>
         </Link>
       )
     } else {

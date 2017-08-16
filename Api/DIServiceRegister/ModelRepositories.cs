@@ -15,6 +15,7 @@ namespace Api.DIServiceRegister {
             services.AddScoped<IPostsRepository, PostsRepository>();
             services.AddScoped<IReportsRepository, ReportsRepository>();
             services.AddScoped<ITagsRepository, TagsRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
         }
 
     } 

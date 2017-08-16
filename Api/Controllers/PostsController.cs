@@ -10,84 +10,88 @@ using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using Newtonsoft.Json;
+using Api.Repositories;
+using Api.Models.UIComponents;
+using Microsoft.AspNetCore.Authorization;
 
-namespace Api.Controllers
-{
+namespace Api.Controllers {
     [Route("api/[controller]")]
-    public class PostsController : Controller
-    {
-        InstaPostContext db;
-        public PostsController(InstaPostContext context) {
+    public class PostsController : Controller {
+
+        private readonly InstaPostContext db;
+        private readonly IPostsRepository postRepo;
+        private readonly ILikesRepository likesRepo;
+
+        public PostsController(
+            InstaPostContext context,
+            IPostsRepository postRepo,
+            ILikesRepository likesRepo
+        ) {
             db = context;
-        }
-        // IConfiguration _iconfiguration;
-
-        // public ValuesController(IConfiguration iconfiguration)
-        // {
-        //   _iconfiguration = iconfiguration;
-        // }
-
-        // GET api/values
-        [HttpGet]
-        public string Get()
-        {
-            // Get the post. This time we are just selecting whatever
-            // first post we can get. But it will be based on some parameters
-            // or filters in real application.
-            var post = db.Posts.Where(e => true).FirstOrDefault();
-
-            // Get user and location associated with post
-            var user = db.Users.Where(e => e.UserId == post.UserId).FirstOrDefault();
-            var location = db.Locations.Where(e => e.PostId == post.PostId).FirstOrDefault();
-
-            // This is our ComponentModel (contains all the necessary data to tarnsfer over network)
-            var PostObj = new Post(post, user, location);
-
-            // Convert class obj to JSON
-            return JsonConvert.SerializeObject(PostObj);
-
-            /*
-                Base Idea is to form the object ith all required data
-                and serialize it using JsonConvert.
-             */
+            this.postRepo = postRepo;
+            this.likesRepo = likesRepo;
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+        [HttpGet("initial")]
+        public string Initial() {
+            return ToJson(
+                postRepo
+                .LoadInitial()
+                .Select(e => new PostComponent(e))
+            );
         }
 
-        // POST api/values
+        [HttpGet("next")]
+        public string Next([FromQuery]int lastPostId) {
+            IEnumerable<Posts> posts = postRepo.GetLatest(lastPostId, 10);
+            if(posts.LastOrDefault() == null)
+                return "";
+
+            return ToJson(
+                postRepo
+                .GetLatest(lastPostId, 10)
+                .Select(e => new PostComponent(e))
+            );
+        }
+        
         [HttpPost]
-        public void Post([FromBody]string value)
-        {
+        [Authorize]
+        public string Posted([FromBody]Posts post) {
+            if (post == null) return "nulled";
+            Posts newPost = postRepo.AddPost(new Posts() {
+                UserId = post.UserId,
+                Locations = post.Locations,
+                PostText = post.PostText,
+                PostDate = post.PostDate,
+                PostTime = post.PostTime,
+                PostImage = post.PostImage
+            });
+            return ToJson(new PostComponent(newPost));
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
+        [HttpPost("profileimg")]
+        [Authorize]
+        public string PostImage([FromBody]ProfileImageComp img) {
+            return postRepo.UploadImage(img);
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+        [HttpGet("byuser")]
+        public string PostsByUser([FromQuery] int userId) {
+            return ToJson(
+                postRepo
+                .GetPostsByUser(userId, 10)
+                .Select(e => new PostComponent(e))
+            );
+        }
+
+        [HttpPut("add-like")]
+        [Authorize]
+        public void LikePost([FromQuery]int postId, int userId) {
+            likesRepo.AddLike(postId, userId);
+        }
+        
+        private string ToJson(object o) {
+            return JsonConvert.SerializeObject(o);
         }
     }
-
-    // Ignore this for now, too
-    // public class Customer
-    // {
-    //   public ObjectId _id { get; set; }
-    //   public string firstName { get; set; }
-    //   public string lastName { get; set; }
-
-    //   public override string ToString()
-    //   {
-    //       return "Person: " + firstName + " " + lastName;
-    //   }
-    // }
 }

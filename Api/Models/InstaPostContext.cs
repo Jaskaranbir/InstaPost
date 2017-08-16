@@ -110,7 +110,7 @@ namespace Api.Models {
                     .HasName("PK_Locations_locationId");
 
                 entity.HasIndex(e => e.PostId)
-                    .HasName("UQ__Location__DD0C739B5AE9AB44")
+                    .HasName("UQ__Location__DD0C739BF8DF4822")
                     .IsUnique();
 
                 entity.Property(e => e.LocationId).HasColumnName("locationId");
@@ -188,20 +188,11 @@ namespace Api.Models {
                 entity.HasKey(e => e.UserId)
                     .HasName("PK_User_userId");
 
-                entity.HasIndex(e => e.Email)
-                    .HasName("UQ__Users__AB6E61643BFC7738")
-                    .IsUnique();
-
                 entity.HasIndex(e => e.Usertag)
-                    .HasName("UQ__Users__79DFBA16813EF0B4")
+                    .HasName("UQ__Users__79DFBA16EF2068A6")
                     .IsUnique();
 
                 entity.Property(e => e.UserId).HasColumnName("userId");
-
-                entity.Property(e => e.Email)
-                    .IsRequired()
-                    .HasColumnName("email")
-                    .HasColumnType("varchar(50)");
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
@@ -214,11 +205,6 @@ namespace Api.Models {
 
                 entity.Property(e => e.LastName)
                     .HasColumnName("lastName")
-                    .HasColumnType("varchar(50)");
-
-                entity.Property(e => e.Password)
-                    .IsRequired()
-                    .HasColumnName("password")
                     .HasColumnType("varchar(50)");
 
                 entity.Property(e => e.ProfilePicture)

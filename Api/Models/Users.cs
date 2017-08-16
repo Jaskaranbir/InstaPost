@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
-namespace Api.Models
-{
-    public partial class Users
-    {
-        public Users()
-        {
+namespace Api.Models {
+    public partial class Users {
+        public Users() {
             Administrators = new HashSet<Administrators>();
             Comments = new HashSet<Comments>();
             Locations = new HashSet<Locations>();
@@ -14,12 +12,14 @@ namespace Api.Models
         }
 
         public int UserId { get; set; }
+        [JsonProperty("firstName")]
         public string FirstName { get; set; }
+        [JsonProperty("lastName")]
         public string LastName { get; set; }
         public string Usertag { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
         public bool IsSuspended { get; set; }
+
+        [JsonProperty("profilePicture")]
         public string ProfilePicture { get; set; }
 
         public virtual ICollection<Administrators> Administrators { get; set; }

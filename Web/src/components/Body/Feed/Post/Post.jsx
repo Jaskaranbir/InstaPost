@@ -15,7 +15,6 @@ class Post extends Component {
 
   handleLike = (e) => {
     const post = this.props.post
-    console.log(post)
     fetch(`${API.basePath}Posts/add-like?postId=${post.PostId}&userId=${post.UserId}`, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

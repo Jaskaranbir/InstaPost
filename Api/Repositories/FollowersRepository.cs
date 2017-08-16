@@ -86,5 +86,10 @@ namespace Api.Repositories {
             long count = db.Followers.Find(e => e.FollowedUserId == followedUserId).Count();
             return count;
         }
+
+        public long GetFollowingCount(int followingUserId) {
+            long count = db.Followers.Find(e => e.FollowerUserId == followingUserId).Count();
+            return count;
+        }
     }
 }

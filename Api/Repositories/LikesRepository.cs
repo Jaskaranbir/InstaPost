@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 namespace Api.Repositories {
     public class LikesRepository : ILikesRepository {
         private readonly InstaPostContext db;
+        private readonly IPostsRepository postRepo;
 
         // Fields Used
         private static readonly string USER_IDS = "l_userIds";
 
-        public LikesRepository(InstaPostContext context) {
+        public LikesRepository(InstaPostContext context, IPostsRepository postRepo) {
             this.db = context;
+            this.postRepo = postRepo;
         }
 
         public Task<Likes> AddLike(int postId, params int[] userIds) {
@@ -26,6 +28,9 @@ namespace Api.Repositories {
             bool isEntityPresent = db.Likes.CheckAndCreateEntityBool(like, filter);
             if (isEntityPresent) {
                 Task<Likes> task = MongoArrayUtils<Likes>.AddToArray<int>(db.Likes, filter, USER_IDS, userIds);
+
+                int likesCount = db.Posts.FirstOrDefault(e => e.PostId == postId).LikesCount;
+                postRepo.UpdatePostLikesCount(postId);
                 return task;
             }
             return null;

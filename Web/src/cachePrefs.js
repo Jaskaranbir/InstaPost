@@ -14,7 +14,7 @@ export default {
   // Examples
   postList: 10,
   someComponentName: 3600, // 1 hour,
-  anotherComponent: {
+  userinfo: {
     age: 300, // 5 mins
     autoRefresh: true
   }

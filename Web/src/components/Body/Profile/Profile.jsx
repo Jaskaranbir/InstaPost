@@ -3,19 +3,84 @@
 import React, {Component} from 'react'
 import './ProfileStyles.scss'
 import API from '@/apiConfig'
+import cache from '@u/cache/cache'
 
 import Header from '@c/Header/Header'
+import Post from '@cb/Feed/Post/Post'
 
 class Profile extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      posts: 0,
+      followers: 0,
+      followings: 0,
+      userPosts: []
+    }
+  }
+
+  componentWillMount () {
+    this.getUserMeta()
+    this.getPostsByUser()
+  }
+
+  getUserMeta = () => {
+    const userInfo = this.props.auth.getUserInfo()
+    cache.doCache(
+      `${API.basePath}Users/userMeta?userId=${userInfo.UserId}`, {
+        'Content-Type': 'application/json;charset=utf-8',
+        'authorization': `Bearer ${this.props.auth.getAccessToken()}`
+      },
+      'userinfo'
+    )
+      .then(JSON.parse)
+      .then(data => {
+        console.log(data)
+        this.setState({
+          posts: data.data.postCount,
+          followers: data.data.followers,
+          followings: data.data.followings
+        })
+      })
+  }
+
+  getPostsByUser = () => {
+    const userInfo = this.props.auth.getUserInfo()
+    cache.doCache(
+      `${API.basePath}Posts/byuser?userId=${userInfo.UserId}`, {
+        'Content-Type': 'application/json;charset=utf-8',
+        'authorization': `Bearer ${this.props.auth.getAccessToken()}`
+      },
+      'postList'
+    )
+      .then(JSON.parse)
+      .then(data => data.data)
+      .then(data => {
+        console.log(data)
+        if (data) {
+          return data.map(e =>
+            <Post key={e.PostId} auth={this.props.auth} post={e} />
+          )
+        }
+      })
+      .then(data => {
+        console.log(data)
+        this.setState({
+          userPosts: this.state.userPosts.concat(data)
+        })
+      })
+  }
+
   render() {
+    const userInfo = this.props.auth.getUserInfo()
     return (
-    <div className="container-fluid text-center">
+    <div className="container-fluid">
       <Header auth={this.props.auth} />
 
       <div className="col-sm-2 sidenav">
       </div>
 
-      <div className="col-sm-8 text-center ">
+      <div className="col-sm-8">
 
         <div className="profileInfo">
           <div className="panel panel-default">
@@ -23,11 +88,10 @@ class Profile extends Component {
             <div className="panel-heading clearfix">
               <img
                 className="img-circle profilePagePic pull-left"
-                src={this.props.auth.getUserInfo().ProfilePicture}
-                alt="goku"/>
-              <h2>John Doe</h2>
+                src={userInfo.ProfilePicture}/>
+              <h2>{`${userInfo.FirstName} ${userInfo.LastName}`}</h2>
               <p>
-                <a>jonnydoeboy</a>
+                <a>`@${userInfo.Usertag}`</a>
               </p>
 
               <button className="btn btn-default btn-file ">Edit Profile
@@ -39,15 +103,16 @@ class Profile extends Component {
               <ul className="nav nav-tabs nav-justified">
                 <li>
                   <a href="#" className="glyphicon glyphicon-picture profileInfo">
-                    127 Posts</a>
+                    {' ' + this.state.posts + ' Posts'}
+                  </a>
                 </li>
                 <li>
                   <a href="#" className="glyphicon glyphicon-user profileInfo">
-                    779 Followers</a>
+                  { `${this.state.followers} Followers`}</a>
                 </li>
                 <li>
                   <a href="#" className="glyphicon glyphicon-user  profileInfo">
-                    671 Following</a>
+                  { `${this.state.followings} Following`}</a>
                 </li>
               </ul>
 
@@ -72,22 +137,18 @@ class Profile extends Component {
                 </li>
               </ul>
 
+              <div id="posts-area">
+                {
+                  this.state.userPosts
+                }
+              </div>
               <div className="tab-content clearfix">
-                <div className="tab-pane active" id="grid">
 
-                  <div className="row imagetiles">
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                      <a href="#"><img src="images/banana.jpg" className="img-responsive"/></a>
-                    </div>
-
-                  </div>
-
-                </div>
                 <div className="tab-pane" id="list">
                   <div className="profilePosts">
 
                     <div className="img-poster clearfix">
-                      <a href=""><img className="img-circle" src={this.props.auth.getUserInfo().ProfilePicture} alt="goku"/></a>
+                      <a href=""><img className="img-circle" src={userInfo.ProfilePicture} alt="goku"/></a>
                       <strong>
                         <a href="">John Doe</a>
                       </strong>

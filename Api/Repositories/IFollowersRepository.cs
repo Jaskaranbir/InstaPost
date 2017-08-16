@@ -7,6 +7,8 @@ namespace Api.Repositories {
         bool AddFollower(int followerUserId, int followedUserId);
         BsonElement GetFollowers(int followedUserId, int skip = 0, int count = 20);
         IEnumerable<Users> GetFollowersUserObj(int followedUserId, int skip = 0, int count = 20);
+        long GetFollowersCount(int followedUserId);
+        long GetFollowingCount(int followingUserId);
         bool IsFollowingUser(int followerUserId, int followedUserId);
         bool RemoveFollower(int followerUserId, int followedUserId);
     }

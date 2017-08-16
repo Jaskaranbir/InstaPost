@@ -17,7 +17,7 @@ class Header extends Component {
       )
     } else {
       return (
-        <div>sdggffff</div>
+        <div>Not logged in</div>
       )
     }
   }

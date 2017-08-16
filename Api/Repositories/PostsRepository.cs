@@ -1,16 +1,35 @@
 ﻿using Api.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.Models.UIComponents;
+using Microsoft.Extensions.Options;
+using CloudinaryDotNet;
+using Api.Models.Config;
+using CloudinaryDotNet.Actions;
 
 namespace Api.Repositories
 {
     public class PostsRepository : IPostsRepository {
         private readonly InstaPostContext db;
+        private readonly Cloudinary imgCloud;
 
-        public PostsRepository(InstaPostContext context) {
+        public PostsRepository(
+            InstaPostContext context,
+            IOptions<CloudinaryConfig> cloudinaryConfig
+        ) {
             this.db = context;
+
+            CloudinaryConfig cloudConfig = cloudinaryConfig.Value;
+            Account account = new Account(
+                cloudConfig.CloudName,
+                cloudConfig.Key,
+                cloudConfig.Secret
+            );
+            Cloudinary cloudinary = new Cloudinary(account);
+            this.imgCloud = cloudinary;
         }
 
         public Posts AddPost(Posts post) {
@@ -24,6 +43,14 @@ namespace Api.Repositories
 
             post.PostText = postText;
             post.PostImage = postImage;
+            db.Update(post);
+            db.SaveChanges();
+            return post;
+        }
+
+        public Posts UpdatePostLikesCount(int postId) {
+            Posts post = db.Posts.SingleOrDefault(e => e.PostId == postId);
+            post.LikesCount++;
             db.Update(post);
             db.SaveChanges();
             return post;
@@ -49,23 +76,55 @@ namespace Api.Repositories
 
             if (isNewerFirst)
                 posts = posts
-                    .OrderByDescending(e => e.PostDate)
-                    .OrderByDescending(e => e.PostTime);
+                    .OrderByDescending(e => e.PostId);
 
             return posts
                     .Skip(skip)
                     .Take(count)
+                    .Include(e => e.User)
                     .AsEnumerable();
         }
 
         public IEnumerable<Posts> GetLatest(int lastPostId, int limit) {
             IEnumerable<Posts> posts = db.Posts
                 .Where(e => e.PostId > lastPostId)
+                .Include(e => e.User)
                 .OrderByDescending(e => e.PostDate)
                 .OrderByDescending(e => e.PostTime)
                 .Take(limit)
                 .AsEnumerable<Posts>();
             return posts;
+        }
+
+        public string UploadImage(ProfileImageComp img) {
+            ImageUploadParams uploadParams = new ImageUploadParams() {
+                File = new FileDescription(@img.Base64ImageData),
+                Transformation = new Transformation()
+                                 .Width(512)
+                                 .Height(512)
+            };
+            return imgCloud.UploadAsync(uploadParams).Result.Uri.ToString();
+        }
+
+        public IEnumerable<Posts> GetPostsByUser(
+            int userId,
+            int count = 10,
+            int skip = 0
+        ) {
+            IQueryable<Posts> qposts = db.Posts
+                .Where(e => e.UserId == userId)
+                .Skip(skip)
+                .Take(count)
+                .Include(e => e.User);
+
+            return qposts.AsEnumerable<Posts>();
+        }
+
+        public long GetPostsByUserCount(int userId) {
+            IQueryable<Posts> qposts = db.Posts
+                .Where(e => e.UserId == userId);
+
+            return qposts.LongCount();
         }
     }
 }

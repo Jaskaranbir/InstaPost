@@ -1,0 +1,22 @@
+$bootstrap: '~bootstrap-scss/../..';
+
+@import "~bootstrap-scss/variables";
+@import "~bootstrap-scss/mixins";
+@import "~bootstrap-scss/forms";
+@import "~bootstrap-scss/buttons";
+@import "~bootstrap-scss/grid";
+
+@import "~bootstrap-scss/utilities";
+
+.label-button {
+  height: initial;
+  font-size: initial;
+  font-family: sans-serif;
+}
+
+.image-preview {
+  margin-top: 10px;
+  left: 50%;
+  position: relative;
+  transform: translateX(-50%);
+}

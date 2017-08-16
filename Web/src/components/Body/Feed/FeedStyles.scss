@@ -1,0 +1,187 @@
+$bootstrap: '~bootstrap-scss/../..';
+// Core variables and mixins
+@import "~bootstrap-scss/variables";
+@import "~bootstrap-scss/mixins";
+// Core CSS
+@import "~bootstrap-scss/grid";
+@import "~bootstrap-scss/forms";
+@import "~bootstrap-scss/buttons";
+// Components
+@import "~bootstrap-scss/component-animations";
+@import "~bootstrap-scss/panels";
+
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: #FAFAFA !important;
+}
+
+.profile-circle {
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.img-poster img {
+    height: 50px;
+    width: 50px;
+    float: left;
+    margin-right: 15px;
+}
+
+.img-comment-list {
+    list-style: none;
+    padding: 0;
+}
+
+.img-comment-list li {
+    margin: 0;
+    margin-top: 10px;
+}
+
+.img-comment-list p {
+    margin: 0;
+}
+
+.img-comment-list span {
+    font-size: .8em;
+    color: #aaa;
+}
+
+.sidenav {
+    clear: right;
+}
+
+#replyComments {
+    padding-left: 10px;
+}
+
+#replyCommentComments {
+    padding-left: 10px;
+}
+
+.clearfix {
+    padding-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.posts {
+    padding: 5px;
+    height: 100%;
+    clear: right;
+}
+
+.individualPost {
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 10px #888888;
+    width: 70%;
+}
+
+#commentExpand {
+    padding-left: 10px;
+}
+
+.postedImage {
+    text-align: center;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.reactButton {
+    height: auto;
+    width: auto;
+    max-width: 20px;
+    max-height: 20px;
+}
+
+.createPost {
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 10px #888888;
+    width: 70%;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#img-upload {
+    width: 100%;
+}
+
+.panel-title {
+    padding-top: 7.5px;
+}
+
+.photoButton {
+    box-shadow: 1px 1px 1px #888888;
+    font-size: 30px;
+}
+
+.postList {
+    font-size: 20px;
+}
+
+.profilePagePic {
+    height: 150px;
+    width: 150px;
+}
+
+.profIMG {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+}
+
+.imagetiles,
+.col-lg-3.col-md-3.col-sm-3.col-xs-6 {
+    padding-top: 20px;
+}
+
+.profilePosts {
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 20px;
+    text-align: left;
+    box-shadow: 1px 1px 10px #888888;
+}
+
+#commentExpand {
+    font-size: 12px;
+}

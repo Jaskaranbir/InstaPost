@@ -1,0 +1,110 @@
+$bootstrap: '~bootstrap-scss/../..';
+
+@import "~bootstrap-scss/variables";
+@import "~bootstrap-scss/mixins";
+@import "~bootstrap-scss/forms";
+@import "~bootstrap-scss/buttons";
+@import "~bootstrap-scss/grid";
+
+@import "~bootstrap-scss/utilities";
+
+.card-container.card {
+  max-width: 350px;
+  padding: 40px 40px;
+}
+
+.btn {
+  font-weight: 700;
+  height: 36px;
+  user-select: none;
+  cursor: default;
+}
+
+/*
+* Card component
+*/
+.card {
+  background-color: #F7F7F7;
+  /* just in case there no content*/
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+  /* shadows and rounded borders */
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  border-radius: 50%;
+}
+
+.center-relative {
+  left: 50%;
+  position: relative;
+  transform: translateX(-50%);
+}
+
+/*
+* Form styles
+*/
+.is-invalid-input-container {
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #ec5840;
+}
+
+.is-invalid-input:not(:focus) {
+  background-color: rgba(236, 88, 64, 0.1);
+  border-color: #ec5840;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.label-button {
+  height: initial;
+  font-size: initial;
+  font-family: sans-serif;
+}
+
+.form-signin input[type=text],
+.form-signin button {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+  z-index: 1;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+  border-color: rgb(104, 145, 162);
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+}
+
+.btn.btn-signin {
+  /*background-color: #4d90fe; */
+  background-color: rgb(104, 145, 162);
+  /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+  padding: 0px;
+  font-weight: 700;
+  font-size: 14px;
+  height: 36px;
+  border-radius: 3px;
+  border: none;
+  transition: all 0.218s;
+}
+
+.btn.btn-signin:hover,
+.btn.btn-signin:active,
+.btn.btn-signin:focus {
+  background-color: rgb(12, 97, 33);
+}

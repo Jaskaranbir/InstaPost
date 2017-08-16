@@ -4,7 +4,6 @@ var webpack = require('webpack')
 var config = require('../config')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
@@ -74,20 +73,10 @@ var webpackConfig = merge(baseWebpackConfig, {
       minChunks: function (module, count) {
         // any required modules inside node_modules are extracted to vendor
         return (
-          (module.resource &&
-          /\.js$/.test(module.resource) &&
-          module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
-          ) === 0) && module.resource.indexOf('jquery') == -1
+          module.resource &&
+          /\.js$/.test(module.resource)
         )
       }
-    }),
-
-    // Output jquery
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'jquery',
-      filename: './assets/modules/jquery/jquery.min.js',
-      chunks: ['jquery']
     }),
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
@@ -95,14 +84,6 @@ var webpackConfig = merge(baseWebpackConfig, {
       name: 'manifest',
       chunks: ['vendor']
     }),
-    // copy custom static assets
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        to: config.build.assetsSubDirectory,
-        ignore: ['.*']
-      }
-    ])
   ]
  })
 

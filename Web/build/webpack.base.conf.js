@@ -1,6 +1,7 @@
 var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -27,6 +28,10 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json'],
     alias: {
       '@': resolve('src'),
+      '@c': resolve('src/components'),
+      '@cb': resolve('src/components/body'),
+      '@u': resolve('src/utils'),
+      'bootstrap-scss': resolve('node_modules/bootstrap-sass/assets/stylesheets/bootstrap')
     }
   },
 
@@ -71,10 +76,14 @@ module.exports = {
     ]
   },
 
-  // node: {
-  //   console: true,
-  //   fs: 'empty',
-  //   net: 'empty',
-  //   tls: 'empty'
-  // }
+  plugins: [
+    // copy custom static assets
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        to: config.build.assetsSubDirectory,
+        ignore: ['.*']
+      }
+    ])
+  ]
 }

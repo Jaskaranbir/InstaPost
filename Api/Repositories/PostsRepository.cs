@@ -49,8 +49,7 @@ namespace Api.Repositories
             db.SaveChanges();
             return post;
         }
-
-<<<<<<< Updated upstream
+        
         public Posts UpdatePostLikesCount(int postId) {
             Posts post = db.Posts.SingleOrDefault(e => e.PostId == postId);
             post.LikesCount++;
@@ -58,10 +57,8 @@ namespace Api.Repositories
             db.SaveChanges();
             return post;
         }
-
-=======
+        
 		//Removes Post from Posts Table
->>>>>>> Stashed changes
         public Posts RemovePost(int postId) {
             Posts post = new Posts() {
                 PostId = postId,

@@ -12,14 +12,8 @@ namespace Api.Repositories {
 
         // Fields Used
         private static readonly string USER_IDS = "l_userIds";
-<<<<<<< Updated upstream
 
         public LikesRepository(InstaPostContext context, IPostsRepository postRepo) {
-=======
-		
-		
-        public LikesRepository(InstaPostContext context) {
->>>>>>> Stashed changes
             this.db = context;
             this.postRepo = postRepo;
         }

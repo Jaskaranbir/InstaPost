@@ -2,11 +2,6 @@
 using System;
 using System.Collections.Generic;
 
-<<<<<<< Updated upstream
-namespace Api.Models {
-    public partial class Users {
-        public Users() {
-=======
 namespace Api.Models
 {
     public partial class Users
@@ -14,7 +9,6 @@ namespace Api.Models
 		//Instantiates the following classes within a User object to allow a user to contain the following information
         public Users()
         {
->>>>>>> Stashed changes
             Administrators = new HashSet<Administrators>();
             Comments = new HashSet<Comments>();
             Locations = new HashSet<Locations>();

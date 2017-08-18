@@ -58,11 +58,10 @@ class Settings extends Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         profilePicture: this.state.profileImg,
-        userId: authObj.getUserInfo().UserId
+        userId: authObj.getUserInfo().UserId,
+        userTag: authObj.getUserInfo().UserTag
       })
     })
-      .then(res => res.text())
-      // .then(data => authObj.registerUser(data))
   }
 
   render() {

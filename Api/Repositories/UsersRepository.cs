@@ -41,12 +41,8 @@ namespace Api.Repositories {
             Cloudinary cloudinary = new Cloudinary(account);
             this.imgCloud = cloudinary;
         }
-<<<<<<< Updated upstream
 
-=======
-        
 		//returns a collection of posts that a user has posted, based on userID
->>>>>>> Stashed changes
         public IEnumerable<Posts> GetPostsByUser(int userId, int count = 10, int skip = 0) {
             IEnumerable<Posts> posts = db.Posts
                 .Where(e => e.UserId == userId)

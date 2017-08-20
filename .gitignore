@@ -264,6 +264,7 @@ __pycache__/
 
 # -------------VM-----------------
 .vagrant
+Vagrantfile
 
 # -------------Web----------------
 **/.DS_Store
@@ -283,5 +284,4 @@ Web/selenium-debug.log
 *.ntvs*
 *.njsproj
 *.sln
-
-/Vagrantfile
+Api/Properties

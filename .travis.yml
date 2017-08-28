@@ -16,8 +16,8 @@ before_install:
 
 before_script:
   - chmod +x Api/run.sh
-  - chmod +x MongoDB/run.sh && \
-    chmod +x MongoDB/mongo_db_script.sh && \
+  - chmod +x MongoDB/run.sh &&
+    chmod +x MongoDB/mongo_db_script.sh &&
     chmod +x MongoDB/set_mongodb_password.sh
   - chmod +x SQLServer/run.sh
   - chmod +x Web/run.sh

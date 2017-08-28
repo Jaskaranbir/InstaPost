@@ -53,7 +53,7 @@ namespace Api.Controllers {
                 .Select(e => new PostComponent(e))
             );
         }
-        
+
         [HttpPost]
         [Authorize]
         public string Posted([FromBody]Posts post) {
@@ -89,7 +89,7 @@ namespace Api.Controllers {
         public void LikePost([FromQuery]int postId, int userId) {
             likesRepo.AddLike(postId, userId);
         }
-        
+
         private string ToJson(object o) {
             return JsonConvert.SerializeObject(o);
         }

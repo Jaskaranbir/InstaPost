@@ -4,8 +4,8 @@ MAINTAINER Jaskaranbir Dhillon
 
 COPY run.sh /
 
-RUN chmod +x /run.sh && \
-    mkdir -p /usr/src/app
+RUN mkdir -p /usr/src/app
+
 WORKDIR /usr/src/app
 
 EXPOSE 8080

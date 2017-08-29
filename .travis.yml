@@ -22,7 +22,7 @@ before_script:
   - chmod +x SQLServer/run.sh
   - chmod +x Web/run.sh
 
-  - docker-compose up --build --verbose -d
+  - docker-compose --verbose up -d --build
   - docker ps
 
 script:

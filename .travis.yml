@@ -21,7 +21,9 @@ before_script:
     chmod +x MongoDB/set_mongodb_password.sh
   - chmod +x SQLServer/run.sh
   - chmod +x Web/run.sh
-  - docker-compose up --build -d
+
+  - docker-compose up --build --verbose -d
+  - docker ps
 
 script:
   - exit 0

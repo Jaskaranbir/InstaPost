@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, {Component} from 'react'
-import API from '@/apiConfig'
+import API from '@/run_config/apiConfig'
 import Validation from 'react-validation-temp'
 import './RegisterProfileStyles.scss'
 

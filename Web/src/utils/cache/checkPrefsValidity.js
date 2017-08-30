@@ -1,6 +1,6 @@
-import cachePrefs from '../../cachePrefs'
+import cachePrefs from '@/run_config/cachePrefs'
 
-// Check if component type preferences are defined properly in cachePrefs.js
+// Check if component type preferences are defined properly in run_config/cachePrefs.js
 export function isPrefValid (componentType) {
   const componentPrefs = cachePrefs[componentType]
   const isAgeInvalid = !componentPrefs ||
@@ -11,7 +11,7 @@ export function isPrefValid (componentType) {
     throw new Error(
       'Component cache or age preferences missing/invalid for type: \'' +
       componentType +
-      '\'. Please specify them in cachePrefs.js'
+      '\'. Please specify them in run_config/cachePrefs.js'
     )
   }
 }

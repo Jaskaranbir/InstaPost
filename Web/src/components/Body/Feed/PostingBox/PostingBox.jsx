@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import './PostingBoxStyles.scss'
 import {format} from 'date-fns'
-import API from '@/apiConfig'
+import API from '@/run_config/apiConfig'
 
 class PostingBox extends Component {
   constructor (props) {

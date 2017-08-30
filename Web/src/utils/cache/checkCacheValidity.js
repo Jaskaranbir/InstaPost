@@ -1,7 +1,7 @@
 import addSeconds from 'date-fns/add_seconds'
 import compareAsc from 'date-fns/compare_asc'
 
-import cachePrefs from '../../cachePrefs'
+import cachePrefs from '@/run_config/cachePrefs'
 
 /*
   Returns true if cache is valid (not expired, or whatever

@@ -1,4 +1,4 @@
-import cachePrefs from '../../cachePrefs'
+import cachePrefs from '@/run_config/cachePrefs'
 import {refresh} from './cacheRefresh'
 
 // Checks if component cache is set to auto refresh and refreshes when required

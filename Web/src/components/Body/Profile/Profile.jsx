@@ -2,7 +2,7 @@
 /* eslint-disable */
 import React, {Component} from 'react'
 import './ProfileStyles.scss'
-import API from '@/apiConfig'
+import API from '@/run_config/apiConfig'
 import cache from '@u/cache/cache'
 
 import Header from '@c/Header/Header'

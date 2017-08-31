@@ -263,8 +263,7 @@ __pycache__/
 *.pyc
 
 # -------------Auth----------------
-Api/appsettings.Development.json
-Api/appsettings.json
+Api/authConfig.json
 Web/src/run_config/authConfig.js
 
 # -------------VM-----------------

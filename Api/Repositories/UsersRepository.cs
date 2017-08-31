@@ -97,8 +97,8 @@ namespace Api.Repositories {
             request.AddHeader("content-type", "application/json");
 
             dynamic requestBody = new ExpandoObject();
-            requestBody.client_id = authConfig.ClientId;
-            requestBody.client_secret = authConfig.ClientSecret;
+            requestBody.client_id = authConfig.PrivateClientId;
+            requestBody.client_secret = authConfig.PrivateClientSecret;
             requestBody.audience = $"{authConfig.Domain}/api/v2/";
             requestBody.grant_type = "client_credentials";
 

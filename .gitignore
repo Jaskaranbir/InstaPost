@@ -262,6 +262,10 @@ paket-files/
 __pycache__/
 *.pyc
 
+# -------------Auth----------------
+Api/authConfig.json
+Web/src/run_config/authConfig.js
+
 # -------------VM-----------------
 .vagrant
 Vagrantfile

@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, {Component} from 'react'
 import './FeedStyles.scss'
-import API from '@/apiConfig'
+import API from '@/run_config/apiConfig'
 import cache from '@u/cache/cache'
 
 import Header from '@c/Header/Header'

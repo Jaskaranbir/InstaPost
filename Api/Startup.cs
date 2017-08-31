@@ -17,6 +17,7 @@ namespace Api {
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("authConfig.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -26,7 +27,7 @@ namespace Api {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             // Add framework services.
-            services.AddMvc().AddJsonOptions(options => 
+            services.AddMvc().AddJsonOptions(options =>
                 options.SerializerSettings.ReferenceLoopHandling =
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
@@ -39,13 +40,11 @@ namespace Api {
                               .AllowCredentials());
             });
 
-            IConfigurationSection serverData = Configuration.GetSection("ServerData");
-            services.Configure<Auth0Config>(serverData.GetSection("Auth0"));
-            services.Configure<CloudinaryConfig>(serverData.GetSection("Cloudinary"));
+            CloudServices.Register(services, Configuration);
 
             SqlServerDb.Register(services, Configuration);
             MongoDb.Register(services, Configuration);
-            
+
             MongoDbSets.Register(services);
             ModelRepositories.Register(services);
         }

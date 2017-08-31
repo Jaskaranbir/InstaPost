@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, {Component} from 'react'
 import './SettingsStyles.scss'
-import API from '@/apiConfig'
+import API from '@/run_config/apiConfig'
 
 import Header from '@c/Header/Header'
 

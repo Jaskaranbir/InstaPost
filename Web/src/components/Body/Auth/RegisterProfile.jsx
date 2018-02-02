@@ -47,6 +47,14 @@ class RegisterProfile extends Component {
   }
 
   register = (authObj) => {
+    console.log('=================')
+    console.log(authObj)
+    console.log(authObj.getAccessToken())
+    console.log({
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      profilePicture: this.state.profileImg
+    })
     fetch(`${API.basePath}users`, {
       headers: {
         'Content-Type': 'application/json',

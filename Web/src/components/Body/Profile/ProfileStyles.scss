@@ -3,13 +3,13 @@ $icon-font-path: $bootstrap+'/fonts/bootstrap/';
 @import "~bootstrap-scss/variables";
 @import "~bootstrap-scss/mixins";
 @import "~bootstrap-scss/glyphicons";
-// Core CSS
+
 @import "~bootstrap-scss/scaffolding";
 @import "~bootstrap-scss/type";
 @import "~bootstrap-scss/grid";
 @import "~bootstrap-scss/forms";
 @import "~bootstrap-scss/code";
-// Components
+
 @import "~bootstrap-scss/button-groups";
 @import "~bootstrap-scss/input-groups";
 @import "~bootstrap-scss/navs";

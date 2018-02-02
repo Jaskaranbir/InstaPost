@@ -4,7 +4,7 @@ echo "Beginning to build frontend..."
 
 if [ ! -f /usr/src/.initial_setup_complete ]; then
   echo "NPM will now install packages for initial build..."
-  npm install --verbose
+  npm install --verbose --no-bin-links --no-optionals
   touch /usr/src/.initial_setup_complete
 else
   echo "Initial NPM packages installation already done. Skipping...."

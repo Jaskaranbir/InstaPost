@@ -1,12 +1,12 @@
 $bootstrap: '~bootstrap-scss/../..';
-// Core variables and mixins
+
 @import "~bootstrap-scss/variables";
 @import "~bootstrap-scss/mixins";
-// Core CSS
+
 @import "~bootstrap-scss/grid";
 @import "~bootstrap-scss/forms";
 @import "~bootstrap-scss/buttons";
-// Components
+
 @import "~bootstrap-scss/component-animations";
 @import "~bootstrap-scss/panels";
 

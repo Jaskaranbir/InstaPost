@@ -41,6 +41,8 @@ services:
     build: ./Web
     ports:
       - "8080:8080"
+    links:
+      - api
     restart: on-failure:5
     volumes:
       - /vagrant/Web:/usr/src/app

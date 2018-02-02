@@ -40,7 +40,7 @@ namespace Api.Controllers {
             this.followerRepo = followerRepo;
             this.postRepo = postRepo;
         }
-        
+
         [HttpPost]
         public string Post([FromBody]Users user) {
             string accessToken = User.Claims.FirstOrDefault(c => c.Type == "access_token").Value;
@@ -61,7 +61,7 @@ namespace Api.Controllers {
             userm.PostCount = postRepo.GetPostsByUserCount(userId);
             return ToJson(userm);
         }
-        
+
         [HttpGet("followers")]
         public long FollowersCount([FromQuery]int userId) {
             return followerRepo.GetFollowersCount(userId);
